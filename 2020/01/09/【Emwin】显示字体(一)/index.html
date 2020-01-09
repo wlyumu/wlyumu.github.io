@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>【Emwin】显示字体(一) | wlyumu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="官方demo123456789101112131415161718192021222324252627282930313233343536373839404142#include &quot;GUI.h&quot;#define RECOMMENDED_MEMPRY (1024L * 5)void MainTask(void)&amp;#123;	int xPos;	int yPos;	int xSize;	int i;	i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Emwin】显示字体(一)">
+<meta property="og:url" content="http://yoursite.com/2020/01/09/%E3%80%90Emwin%E3%80%91%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93(%E4%B8%80)/index.html">
+<meta property="og:site_name" content="wlyumu">
+<meta property="og:description" content="官方demo123456789101112131415161718192021222324252627282930313233343536373839404142#include &quot;GUI.h&quot;#define RECOMMENDED_MEMPRY (1024L * 5)void MainTask(void)&amp;#123;	int xPos;	int yPos;	int xSize;	int i;	i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-09T13:33:00.623Z">
+<meta property="article:modified_time" content="2019-11-11T16:01:27.526Z">
+<meta property="article:author" content="wlyumu">
+<meta property="article:tag" content="GUI">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="wlyumu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wlyumu</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">嵌入式</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-【Emwin】显示字体(一)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/09/%E3%80%90Emwin%E3%80%91%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93(%E4%B8%80)/" class="article-date">
+  <time datetime="2020-01-09T13:33:00.623Z" itemprop="datePublished">2020-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Emwin/">Emwin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【Emwin】显示字体(一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="官方demo"><a href="#官方demo" class="headerlink" title="官方demo"></a>官方demo</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"GUI.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RECOMMENDED_MEMPRY (1024L * 5)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainTask</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> xPos;</span><br><span class="line">	<span class="keyword">int</span> yPos;</span><br><span class="line">	<span class="keyword">int</span> xSize;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	GUI_Init();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (GUI_ALLOC_GetNumFreeBytes() &lt; RECOMMENDED_MEMPRY)</span><br><span class="line">	&#123;</span><br><span class="line">		GUI_ErrorOut(<span class="string">"not enough memory available"</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	xPos = LCD_GetXSize() / <span class="number">2</span>;</span><br><span class="line">	yPos = LCD_GetYSize() / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">	GUI_SetTextMode(GUI_TM_REV);</span><br><span class="line">	GUI_SetFont(GUI_FONT_20F_ASCII);</span><br><span class="line">	GUI_DispStringHCenterAt(<span class="string">"Hello world!"</span>, xPos, yPos);</span><br><span class="line"></span><br><span class="line">	GUI_SetFont(GUI_FONT_D24X32);</span><br><span class="line">	xSize = GUI_GetStringDistX(<span class="string">"0000"</span>);</span><br><span class="line">	xPos -= xSize / <span class="number">2</span>;</span><br><span class="line">	yPos += <span class="number">24</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		GUI_DispDecAt(i ++, xPos, yPos, <span class="number">4</span>);</span><br><span class="line">		<span class="keyword">if</span> (i &gt; <span class="number">9999</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			i = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数说明"><a href="#函数说明" class="headerlink" title="函数说明"></a>函数说明</h2><ul>
+<li>GUI_SetTextMode</li>
+</ul>
+<blockquote>
+<p>原    型：int GUI_SetTextMode(int TextMode)<br>函数说明：设置文本模式<br>参    数：<br>      GUI_TEXTMODE_NORMAL      文本正常显示。这是默认设置;这个值等于0<br>       GUI_TEXTMODE_REV         文本反向显示。(实测背景色相反)<br>       GUI_TEXTMODE_TRANS       文本显示为透明<br>       GUI_TEXTMODE_XOR         文本反转背景</p>
+</blockquote>
+<ul>
+<li>GUI_SetFont</li>
+</ul>
+<blockquote>
+<p>原    型：const GUI_FONT * GUI_SetFont(const GUI_FONT * pNewFont)<br>函数说明：设置用于文本输出的字体<br>参    数：<br>         pNewFont:指向要选择和使用的字体的指针,例如GUI_FONT_20F_ASCII</p>
+</blockquote>
+<ul>
+<li>GUI_DispStringHCenterAt</li>
+</ul>
+<blockquote>
+<p>原    型：void GUI_DispStringHCenterAt(const char * s, int x, int y);<br>函数说明：显示作为参数传递的字符串在指定位置水平居中在当前窗口中使用当前字体<br>参    数：<br>        s:要显示的字符串<br>        x:显示位置横坐标<br>        y:显示位置纵坐标</p>
+</blockquote>
+<ul>
+<li>GUI_GetStringDistX</li>
+</ul>
+<blockquote>
+<p>原    型：int GUI_GetStringDistX(const char * s);<br>函数说明：返回用于以当前选定字体显示指定字符串的X-size<br>参    数：<br>        s:指定字符串</p>
+</blockquote>
+<ul>
+<li>GUI_DispDecAt</li>
+</ul>
+<blockquote>
+<p>原    型：void GUI_DispDecAt(I32 v, I16P x, I16P y, U8 Len);<br>函数说明：以十进制形式显示具有指定字符数的值，使用当前字体在当前窗口中的位置。<br>参    数：<br>        v  :显示的十进制的值<br>        x  :显示位置的横坐标<br>        y  :显示位置的纵坐标<br>        len:显示的最大位数</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/09/%E3%80%90Emwin%E3%80%91%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93(%E4%B8%80)/" data-id="ck56rw4100006ast19mrvdo2j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GUI/" rel="tag">GUI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/09/Cmake%E7%94%A8%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Cmake用法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/09/%E3%80%90Emwin%E3%80%91%E6%B5%8B%E8%AF%95%E5%B1%8F%E5%B9%95demo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【Emwin】测试屏幕demo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Cmake/">Cmake</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Emwin/">Emwin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/" rel="tag">GUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B/" rel="tag">自动化管理工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">自动化管理工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/01/09/Cmake%E7%94%A8%E6%B3%95/">Cmake用法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/09/%E3%80%90Emwin%E3%80%91%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93(%E4%B8%80)/">【Emwin】显示字体(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/09/%E3%80%90Emwin%E3%80%91%E6%B5%8B%E8%AF%95%E5%B1%8F%E5%B9%95demo/">【Emwin】测试屏幕demo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/09/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 wlyumu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
