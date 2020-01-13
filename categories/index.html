@@ -688,37 +688,33 @@
     </div>
 
     
-        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
-<link rel="stylesheet" href="/css/my-gitalk.css">
 
-<div class="card gitalk-card" data-aos="fade-up">
-    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
-        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
-        <span>评论</span>
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC80ODI2NS8yNDc2MQ">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
     </div>
-    <div id="gitalk-container" class="card-content"></div>
+    <!-- City版安装代码已完成 -->
 </div>
-
-<script src="/libs/gitalk/gitalk.min.js"></script>
-<script>
-    let gitalk = new Gitalk({
-        clientID: '355f7de773695b66b92d',
-        clientSecret: '751936d70975e797275f6444c3c4bc4df94d7644',
-        repo: 'https://github.com/login',
-        owner: 'wlyumu',
-        admin: "wlyumu",
-        id: '2020-01-12T11-56-24',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-
-    gitalk.render('gitalk-container');
-</script>
-    
-
-    
-
-    
-
     
 
     
@@ -931,29 +927,7 @@
 
 
 
-{% elseif theme.gitalk.enable %}
-    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
-<link rel="stylesheet" href="/css/my-gitalk.css">
 
-<div class="card gitalk-card" data-aos="fade-up">
-    <div id="gitalk-container" class="card-content"></div>
-</div>
-
-<script src="/libs/gitalk/gitalk.min.js"></script>
-<script>
-    let gitalk = new Gitalk({
-        clientID: '355f7de773695b66b92d',
-        clientSecret: '751936d70975e797275f6444c3c4bc4df94d7644',
-        repo: 'https://github.com/login',
-        owner: 'wlyumu',
-        admin: "wlyumu",
-        id: '2020-01-12T11-56-24',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-
-    gitalk.render('gitalk-container');
-</script>
-{% endif %}
 
     <footer class="page-footer bg-color">
     <div class="container row center-align" style="margin-bottom: 0px !important;">
