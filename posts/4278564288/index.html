@@ -471,7 +471,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    765
+                    777
                 </div>
                 
 
@@ -501,36 +501,23 @@
 <li>有效解决中断服务程序和任务之间的同步问题</li>
 </ol>
 </blockquote>
-<h1 id="事件标志API"><a href="#事件标志API" class="headerlink" title="事件标志API"></a>事件标志API</h1><ol>
-<li>创建事件标志对象</li>
-</ol>
-<pre class="line-numbers language-C"><code class="language-C">原型 
+<h2 id="事件标志API"><a href="#事件标志API" class="headerlink" title="事件标志API"></a>事件标志API</h2><h3 id="1-创建事件标志对象"><a href="#1-创建事件标志对象" class="headerlink" title="1. 创建事件标志对象"></a>1. 创建事件标志对象</h3><pre class="line-numbers language-C"><code class="language-C">原型 
 osEventFlagsId_t osEventFlagsNew(const osEventFlagsAttr_t * attr)    
 attr    : 事件标志属性   默认为NULL  
 Returns : 返回事件ID , 出现错误则返回 NULL
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="2">
-<li>设置定的事件标志</li>
-</ol>
-<pre class="line-numbers language-C"><code class="language-C">原型： uint32_t osEventFlagsSet    (    osEventFlagsId_t     ef_id, uint32_t flags)    
+<h3 id="2-设置定的事件标志"><a href="#2-设置定的事件标志" class="headerlink" title="2. 设置定的事件标志"></a>2. 设置定的事件标志</h3><pre class="line-numbers language-C"><code class="language-C">原型： uint32_t osEventFlagsSet    (    osEventFlagsId_t     ef_id, uint32_t flags)    
 ef_id   : 要设置事件的ID
 flags   : 指定应设置的标志 ，该标志只能设置0bit - 30bit, 设置最高位则是设置错误代码
 Returns : 返回设置后设置事件的标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>3.清除指定的事件标志</p>
-<pre class="line-numbers language-C"><code class="language-C">原型: uint32_t osEventFlagsClear    (    osEventFlagsId_t     ef_id, uint32_t     flags)
+<h3 id="3-清除指定的事件标志"><a href="#3-清除指定的事件标志" class="headerlink" title="3.清除指定的事件标志"></a>3.清除指定的事件标志</h3><pre class="line-numbers language-C"><code class="language-C">原型: uint32_t osEventFlagsClear    (    osEventFlagsId_t     ef_id, uint32_t     flags)
 ef_id      : 要设置事件的ID
 flags   : 指定应清除的标志
 Returns ：返回清除前的事件标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="4">
-<li>获取当前事件标志对象的事件标志</li>
-</ol>
-<pre class="line-numbers language-C"><code class="language-C">原型：uint32_t osEventFlagsGet    (osEventFlagsId_t     ef_id)
+<h3 id="4-获取当前事件标志对象的事件标志"><a href="#4-获取当前事件标志对象的事件标志" class="headerlink" title="4. 获取当前事件标志对象的事件标志"></a>4. 获取当前事件标志对象的事件标志</h3><pre class="line-numbers language-C"><code class="language-C">原型：uint32_t osEventFlagsGet    (osEventFlagsId_t     ef_id)
 ef_id   ： 事件的ID
 Returns ： 返回当前事件对象的事件标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ol start="5">
-<li>等待事件标志</li>
-</ol>
-<pre class="line-numbers language-C"><code class="language-C">原型：uint32_t osEventFlagsWait    (    osEventFlagsId_t     ef_id,
+<h3 id="5-等待事件标志"><a href="#5-等待事件标志" class="headerlink" title="5. 等待事件标志"></a>5. 等待事件标志</h3><pre class="line-numbers language-C"><code class="language-C">原型：uint32_t osEventFlagsWait    (    osEventFlagsId_t     ef_id,
                                   uint32_t     flags,
                                   uint32_t     options,
                                   uint32_t     timeout 
@@ -542,32 +529,27 @@ options ： 等待条件
            osFlagsWaitAll        等待所有标志
            osFlagsNoClear        不要清除已指定要等待的标志，一般用于手动清除
 
-timeout ：系统等待事件标志的时间 ， 如果该值设为osWaitForever该函数将等待无限的           时间，直到事件标志变为可用。
+timeout ：系统等待事件标志的时间 ， 如果该值设为osWaitForever该函数将等待无限的
+          时间，直到事件标志变为可用。
 Returns ：如果等到事件标志则返回该事件标志或者返回错误码，错误码如下：
           osFlagsErrorUnknown(-1)   未指定的错误
           osFlagsErrorTimeout(-2)   在给定的时间内尚未设置等待的标志
           osFlagsErrorResource(-3)  未指定超时时，尚未设置等待的标志
           osFlagsErrorParameter(-4) 参数ef_id无法标识有效的事件标志对象或标志
                                     的最高位设置。
-          osFlagsErrorISR      (-6) 该函数不能再中断里使用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+          osFlagsErrorISR      (-6) 该函数不能再中断里使用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="6">
 <li>删除事件标志对象</li>
 </ol>
 <pre class="line-numbers language-C"><code class="language-C">原型：osStatus_t osEventFlagsDelete( osEventFlagsId_t     ef_id    ) 
 ef_id  : 事件对象
 Returns: 状态代码，指示功能的执行状态<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ol start="7">
-<li>获取事件对象的名称</li>
-</ol>
-<pre class="line-numbers language-C"><code class="language-C">ef_id  : 事件对象
+<h3 id="7-获取事件对象的名称"><a href="#7-获取事件对象的名称" class="headerlink" title="7. 获取事件对象的名称"></a>7. 获取事件对象的名称</h3><pre class="line-numbers language-C"><code class="language-C">ef_id  : 事件对象
 Returns: 事件对象的名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h1 id="事件标志组使用"><a href="#事件标志组使用" class="headerlink" title="事件标志组使用"></a>事件标志组使用</h1><ol>
+<h2 id="事件标志组使用"><a href="#事件标志组使用" class="headerlink" title="事件标志组使用"></a>事件标志组使用</h2><ol>
 <li>两个线程如何使用事件标志组通信示意图<br><img src="http://q3l3oiuxr.bkt.clouddn.com/%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG" alt="logo"></li>
 </ol>
-<ol>
-<li>示例</li>
-</ol>
-<pre class="line-numbers language-C"><code class="language-C"> #include "cmsis_os2.h"                      
+<h3 id="1-事件标志组使用示例"><a href="#1-事件标志组使用示例" class="headerlink" title="1. 事件标志组使用示例"></a>1. 事件标志组使用示例</h3><pre class="line-numbers language-C"><code class="language-C"> #include "cmsis_os2.h"                      
 
 /*事件标志*/ 
 #define FLAGS_MSK1 0x00000001U
