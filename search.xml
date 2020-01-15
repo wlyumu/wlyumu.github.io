@@ -61,26 +61,65 @@
           相关(依赖)的部件清单。</code></pre><p>示例 ： find_package(Protobuf REQUIRED)</p>
 <pre><code>
 + target_link_libraries
-```c
+
+```C
 原型： target_link_libraries(&lt;target&gt; [item1] [item2] [...]
                          [[debug|optimized|general] &lt;item&gt;] ...)
 用法： target_link_libraries(projectname  Libname);</code></pre><ul>
-<li>find_package 和 target_link_libraries示例<pre class="line-numbers language-C"><code class="language-C">cmake_minimum_required(VERSION 2.8.3)
-project(VMSClient)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
+<li>find_package 和 target_link_libraries示例</li>
 </ul>
-<p>set(CMAKE_AUTOMOC ON)<br>set(CMAKE_BUILD_TYPE RELEASE)</p>
-<p>find_package(catkin REQUIRED COMPONENTS<br>        roscpp<br>        sensor_msgs<br>        std_msgs<br>        aisimba_msgs<br>        )</p>
-<p>catkin_package()</p>
-<p>find_package(Qt5Widgets REQUIRED)<br>find_package(Qt5Core REQUIRED)<br>find_package(Qt5Gui REQUIRED)<br>find_package(Qt5WebSockets REQUIRED)<br>find_package(Qt5Network REQUIRED)<br>find_package(Protobuf REQUIRED)</p>
-<p>if (PROTOBUF_FOUND)<br>    message(STATUS “protobuf library found”)<br>else ()<br>    message(FATAL_ERROR “protobuf library is needed but cant be found”)<br>endif ()</p>
-<p>include_directories(<br>        include<br>        ${catkin_INCLUDE_DIRS}<br>)</p>
-<p>include_directories(${PROTOBUF_INCLUDE_DIRS})<br>include_directories(${PROJECT_SOURCE_DIR}/include)<br>include_directories(${PROJECT_SOURCE_DIR}/proto_src)</p>
-<p>file(GLOB_RECURSE SRC src/<em>.c src/</em>.cpp proto_src/<em>.cc)<br>file(GLOB_RECURSE INC include/</em>.h include/<em>.hpp proto_src/</em>.h)</p>
-<p>add_executable(${PROJECT_NAME}_node ${INC} ${SRC})<br>add_definitions(-std=c++11 -g -O3 -Wno-deprecated -Wno-dev)<br>add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})</p>
-<p>target_link_libraries(${PROJECT_NAME}_node<br>        ${catkin_LIBRARIES}<br>        ${PROTOBUF_LIBRARIES}<br>        Qt5::Widgets<br>        Qt5::Core<br>        Qt5::Gui<br>        Qt5::WebSockets<br>        Qt5::Network<br>        glog<br>        )</p>
-<pre><code></code></pre>]]></content>
+<pre class="line-numbers language-C"><code class="language-C">cmake_minimum_required(VERSION 2.8.3)
+project(VMSClient)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_BUILD_TYPE RELEASE)
+find_package(catkin REQUIRED COMPONENTS
+        roscpp
+        sensor_msgs
+        std_msgs
+        aisimba_msgs
+        )
+
+catkin_package()
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Gui REQUIRED)
+find_package(Qt5WebSockets REQUIRED)
+find_package(Qt5Network REQUIRED)
+find_package(Protobuf REQUIRED)
+
+if (PROTOBUF_FOUND)
+    message(STATUS "protobuf library found")
+else ()
+    message(FATAL_ERROR "protobuf library is needed but cant be found")
+endif ()
+
+include_directories(
+        include
+        ${catkin_INCLUDE_DIRS}
+)
+
+include_directories(${PROTOBUF_INCLUDE_DIRS})
+include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/proto_src)
+
+file(GLOB_RECURSE SRC src/*.c src/*.cpp proto_src/*.cc)
+file(GLOB_RECURSE INC include/*.h include/*.hpp proto_src/*.h)
+
+add_executable(${PROJECT_NAME}_node ${INC} ${SRC})
+add_definitions(-std=c++11 -g -O3 -Wno-deprecated -Wno-dev)
+add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(${PROJECT_NAME}_node
+        ${catkin_LIBRARIES}
+        ${PROTOBUF_LIBRARIES}
+        Qt5::Widgets
+        Qt5::Core
+        Qt5::Gui
+        Qt5::WebSockets
+        Qt5::Network
+        glog
+        )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
       <categories>
         <category>Cmake</category>
       </categories>
