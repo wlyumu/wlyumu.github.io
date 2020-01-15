@@ -7,8 +7,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类, 嵌入式软件  C/C++ ARM STM32 物联网">
-    <meta name="description" content="分类 | wlyumu">
+    <meta name="keywords" content="【RTX5】事件标志组, 嵌入式软件  C/C++ ARM STM32 物联网">
+    <meta name="description" content="RTX5 -- 事件标志的基本使用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>分类 | wlyumu</title>
+    <title>【RTX5】事件标志组 | wlyumu</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">categories</h1>
+                    <h1 class="description center-align post-title">【RTX5】事件标志组</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/RTX5/">
+                                <span class="chip bg-color">RTX5</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                嵌入式系统
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -444,28 +457,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-12
+                    20120-01-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-01-12
+                    2020-01-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    765
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -481,7 +494,148 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="事件标志组"><a href="#事件标志组" class="headerlink" title="事件标志组"></a>事件标志组</h1><blockquote>
+<p>事件标志组是一种实现多任务同步机制。<br>优点：</p>
+<ol>
+<li>方便RTOS有效管理任务， 实现多任务之间的同步</li>
+<li>有效解决中断服务程序和任务之间的同步问题</li>
+</ol>
+</blockquote>
+<h1 id="事件标志API"><a href="#事件标志API" class="headerlink" title="事件标志API"></a>事件标志API</h1><ol>
+<li>创建事件标志对象</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">原型 
+osEventFlagsId_t osEventFlagsNew(const osEventFlagsAttr_t * attr)    
+attr    : 事件标志属性   默认为NULL  
+Returns : 返回事件ID , 出现错误则返回 NULL
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>设置定的事件标志</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">原型： uint32_t osEventFlagsSet    (    osEventFlagsId_t     ef_id, uint32_t flags)    
+ef_id   : 要设置事件的ID
+flags   : 指定应设置的标志 ，该标志只能设置0bit - 30bit, 设置最高位则是设置错误代码
+Returns : 返回设置后设置事件的标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>3.清除指定的事件标志</p>
+<pre class="line-numbers language-C"><code class="language-C">原型: uint32_t osEventFlagsClear    (    osEventFlagsId_t     ef_id, uint32_t     flags)
+ef_id      : 要设置事件的ID
+flags   : 指定应清除的标志
+Returns ：返回清除前的事件标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="4">
+<li>获取当前事件标志对象的事件标志</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">原型：uint32_t osEventFlagsGet    (osEventFlagsId_t     ef_id)
+ef_id   ： 事件的ID
+Returns ： 返回当前事件对象的事件标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ol start="5">
+<li>等待事件标志</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">原型：uint32_t osEventFlagsWait    (    osEventFlagsId_t     ef_id,
+                                  uint32_t     flags,
+                                  uint32_t     options,
+                                  uint32_t     timeout 
+                                 )    
+ef_id   ： 所等待的事件对象
+flags   ： 指定等待事件标志
+options ： 等待条件
+           osFlagsWaitAny        等待任何标志
+           osFlagsWaitAll        等待所有标志
+           osFlagsNoClear        不要清除已指定要等待的标志，一般用于手动清除
+
+timeout ：系统等待事件标志的时间 ， 如果该值设为osWaitForever该函数将等待无限的           时间，直到事件标志变为可用。
+Returns ：如果等到事件标志则返回该事件标志或者返回错误码，错误码如下：
+          osFlagsErrorUnknown(-1)   未指定的错误
+          osFlagsErrorTimeout(-2)   在给定的时间内尚未设置等待的标志
+          osFlagsErrorResource(-3)  未指定超时时，尚未设置等待的标志
+          osFlagsErrorParameter(-4) 参数ef_id无法标识有效的事件标志对象或标志
+                                    的最高位设置。
+          osFlagsErrorISR      (-6) 该函数不能再中断里使用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="6">
+<li>删除事件标志对象</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">原型：osStatus_t osEventFlagsDelete( osEventFlagsId_t     ef_id    ) 
+ef_id  : 事件对象
+Returns: 状态代码，指示功能的执行状态<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ol start="7">
+<li>获取事件对象的名称</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">ef_id  : 事件对象
+Returns: 事件对象的名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="事件标志组使用"><a href="#事件标志组使用" class="headerlink" title="事件标志组使用"></a>事件标志组使用</h1><ol>
+<li>两个线程如何使用事件标志组通信示意图<br><img src="http://q3l3oiuxr.bkt.clouddn.com/%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG" alt="logo"></li>
+</ol>
+<ol>
+<li>示例</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C"> #include "cmsis_os2.h"                      
+
+/*事件标志*/ 
+#define FLAGS_MSK1 0x00000001U
+
+/*事件对象*/ 
+osEventFlagsId_t evt_id;                        
+
+/*发送事件标志线程ID*/ 
+osThreadId_t tid_Thread_EventSender;  
+/*接收事件标志线程ID*/           
+osThreadId_t tid_Thread_EventReceiver;          
+
+void Thread_EventSender   (void *argument);  
+void Thread_EventReceiver (void *argument);     
+
+int Init_Events (void) {
+  /*创建事件对象*/
+  evt_id = osEventFlagsNew(NULL);
+  if (evt_id == NULL) {
+    /*线程对象创建失败处理*/
+  }
+
+ /*创建发送事件标志线程*/
+  tid_Thread_EventSender = osThreadNew(Thread_EventSender, NULL, NULL);
+  if (tid_Thread_EventSender == NULL) {
+    return(-1);
+  }
+   /*创建接收事件标志线程*/
+  tid_Thread_EventReceiver = osThreadNew(Thread_EventReceiver, NULL, NULL);
+  if (tid_Thread_EventReceiver == NULL) {
+    return(-1);
+  }
+  return(0);
+}
+
+void Thread_EventSender (void *argument) {
+
+  while (1) {  
+    /*设置事件标志*/  
+    osEventFlagsSet(evt_id, FLAGS_MSK1);
+    /*挂起任务*/
+    osThreadYield();                           s
+  }
+}
+
+void Thread_EventReceiver (void *argument) {
+  uint32_t flags;
+
+  while (1) {
+    /*阻塞等待接收事件，直到等到该事件标志*/
+    flags = osEventFlagsWait(evt_id, FLAGS_MSK1, osFlagsWaitAny, osWaitForever);
+
+    /*根据等到的事件标志来执行相应的动作*/
+    switch(flags)
+    {
+      case EVENT_1:
+
+      break;
+      case EVENT_2:
+
+      break;
+     default:
+      break;
+    }
+  }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr/>
 
@@ -496,7 +650,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn" rel="external nofollow noreferrer">wlyumu</a>
+                    <a href="http://wlyumu.cn" rel="external nofollow noreferrer">wl</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -506,7 +660,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn/categories/index.html">http://wlyumu.cn/categories/index.html</a>
+                    <a href="http://wlyumu.cn/posts/4278564288/">http://wlyumu.cn/posts/4278564288/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -519,7 +673,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://wlyumu.cn" target="_blank">wlyumu</a>
+                    <a href="http://wlyumu.cn" target="_blank">wl</a>
                     !
                 </span>
             </div>
@@ -543,7 +697,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/RTX5/">
+                                    <span class="chip bg-color">RTX5</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -734,34 +892,46 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/categories/index.html">
+                <a href="/posts/4278564288/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【RTX5】事件标志组">
                         
-                        <span class="card-title">categories</span>
+                        <span class="card-title">【RTX5】事件标志组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            RTX5 -- 事件标志的基本使用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-12
+                                <i class="far fa-clock fa-fw icon-date"></i>20120-01-15
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            wlyumu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    嵌入式系统
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RTX5/">
+                        <span class="chip bg-color">RTX5</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -769,37 +939,58 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/categories/index.html">
+                <a href="/posts/4278564289/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Cmake用法">
                         
-                        <span class="card-title">categories</span>
+                        <span class="card-title">Cmake用法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Cmake基本用法
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)
+
+
+指定Cmake最低版本需求 2.83
+
+
+project(&lt;PROJECT-NAME&gt;)
+
+
+指定项目名称  例如：PROJEC
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-09
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            wlyumu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Cmake/" class="post-category">
+                                    Cmake
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B/">
+                        <span class="chip bg-color">自动化管理工程</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
