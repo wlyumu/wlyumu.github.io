@@ -481,7 +481,7 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    465
+                    476
                 </div>
                 
 
@@ -523,11 +523,11 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
 </li>
 </ul>
 <ul>
-<li>ADD_EXECUTABLE(生成可执行文件的名字  变量)<blockquote>
+<li>ADD_EXECUTABLE(生成可执行文件的名字  变量)</li>
+</ul>
+<blockquote>
 <p>ADD_EXECUTABLE(hello ${SRC_LIST})<br>将变量SRC_LIST表示路径下源文件编译，并生成可执行文件hello</p>
 </blockquote>
-</li>
-</ul>
 <h2 id="同一目录，多文件"><a href="#同一目录，多文件" class="headerlink" title="同一目录，多文件"></a>同一目录，多文件</h2><blockquote>
 <p>./Demo<br>|<br>+—-main.cc<br>|<br>+—-function.c<br>|<br>+—-function.h</p>
 </blockquote>
@@ -547,26 +547,28 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
 <p>AUX_SOURCE_DIRECTORY(. SUB_SRC)</p>
 </blockquote>
 <ul>
-<li>find_package<pre class="line-numbers language-C"><code class="language-C">原型 ：find_package(<package> [version] [EXACT] [QUIET] [MODULE]
-          [REQUIRED] [[COMPONENTS] [components...]]
-          [OPTIONAL_COMPONENTS components...]
-          [NO_POLICY_SCOPE])
-<package>   :指定查找的软件包
-[QUIET]     :如果找不到软件包，该选项将禁用警告消息
-[MODULE]    :禁用下面记录的第二个签名
-[REQUIRED]  :其含义是指是否是工程必须的，表示如果没有找到的
-            话，cmake的过程会终止，并发出警告信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<li>find_package</li>
 </ul>
-<pre><code>          但指定了COMPONENTS选项，在它们的后面可以列出一包
-          相关(依赖)的部件清单。</code></pre><p>示例 ： find_package(Protobuf REQUIRED)</p>
-<pre><code>
-+ target_link_libraries
-
-```C
-原型： target_link_libraries(&lt;target&gt; [item1] [item2] [...]
-                         [[debug|optimized|general] &lt;item&gt;] ...)
-用法： target_link_libraries(projectname  Libname);</code></pre><ul>
+<pre class="line-numbers language-C"><code class="language-C">原型 ：find_package(<package> [version] [EXACT] [QUIET] [MODULE]
+            [REQUIRED] [[COMPONENTS] [components...]]
+            [OPTIONAL_COMPONENTS components...]
+            [NO_POLICY_SCOPE])
+ <package>   :指定查找的软件包
+ [QUIET]     :如果找不到软件包，该选项将禁用警告消息
+ [MODULE]    :禁用下面记录的第二个签名
+ [REQUIRED]  :其含义是指是否是工程必须的，表示如果没有找到的
+              话，cmake的过程会终止，并发出警告信息
+ [COMPONENTS]:在REQUIRED选项之后，或者如果没有指定REQUIRED选项
+              但指定了COMPONENTS选项，在它们的后面可以列出一包
+              相关(依赖)的部件清单。
+示例 ： find_package(Protobuf REQUIRED)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>target_link_libraries</li>
+</ul>
+<pre class="line-numbers language-C"><code class="language-C">原型： target_link_libraries(<target> [item1] [item2] [...]
+                         [[debug|optimized|general] <item>] ...)
+用法： target_link_libraries(projectname  Libname);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>find_package 和 target_link_libraries示例</li>
 </ul>
 <pre class="line-numbers language-C"><code class="language-C">cmake_minimum_required(VERSION 2.8.3)
@@ -1129,7 +1131,7 @@ void MainTask(void)
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">926</span>&nbsp;字
+                class="white-color">937</span>&nbsp;字
             
             
             
