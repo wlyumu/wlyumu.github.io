@@ -1,6 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【keil】 iot_socket组件</title>
+    <url>/posts/4278564289/</url>
+    <content><![CDATA[<h2 id="iot-socket-组件"><a href="#iot-socket-组件" class="headerlink" title="iot_socket 组件"></a>iot_socket 组件</h2><p> iot_socket 组件是keil对RL_TcpNet的bsd socket API 封装。</p>
+<h2 id="iot-socket-API"><a href="#iot-socket-API" class="headerlink" title="iot_socket API"></a>iot_socket API</h2><ul>
+<li><p>iotSocketCreate</p>
+<pre class="line-numbers language-C"><code class="language-C">原型:int32_t iotSocketCreate (int32_t af, int32_t type, int32_t protocol) 
+参数：
+  af ：iot socket 地址类型
+      IOT_SOCKET_AF_INET  -----   IPV4
+      IOT_SOCKET_AF_INET6 -----   IPV6
+ type: iot socket连接类型
+      IOT_SOCKET_SOCK_STREAM
+      IOT_SOCKET_SOCK_DGRAM
+ protocol：
+      IOT_SOCKET_IPPROTO_TCP ----  tcp协议控制
+      IPPROTO_UDP            ----  udp协议控制
+返回值：创建的socket<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>iotSocketConnect</p>
+<pre class="line-numbers language-C"><code class="language-C">原型：int32_t iotSocketConnect (int32_t socket, const uint8_t *ip, uint32_t ip_len, uint16_t port)
+参数：
+  socket：连接的套接字
+  ip    : ip地址
+  ip_len：IP地址长度
+          NET_ADDR_IP4_LEN
+          NET_ADDR_IP6_LEN
+  port  : 端口
+返回值: 状态码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>iotSocketRecv</p>
+<pre class="line-numbers language-C"><code class="language-C">原型：int32_t iotSocketRecv (int32_t socket, void *buf, uint32_t len) 
+参数：
+  socket：连接的套接字
+  buf   : 要接收的数据缓冲区
+  len   : 接收数据的长度
+返回值: >0   接收字节数
+     <0   错误码, 参考rc_bsd_to_iot错误码处理函数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>iotSocketSend</p>
+</li>
+</ul>
+<pre class="line-numbers language-C"><code class="language-C">原型：int32_t iotSocketSend (int32_t socket, const void *buf, uint32_t len)
+参数：
+      socket：连接的套接字
+      buf   : 发送数据的缓冲区
+      len   : 发送数据的长度
+返回值：>0  发送字节数
+        <0  c错误码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><p>使用iot socket API 编写客户端接收</p>
+<pre class="line-numbers language-C"><code class="language-C">void iot_thread(void)
+{
+ int32_t rc;  /*socket 套接字*/
+ int32_t res; 
+ uint8_t ip[4] = {192, 168, 1, 106};  
+ uint16_t port = 2000;
+
+ /*创建socket*/
+ rc = iotSocketCreate(IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
+
+ /*连接指定的ip*/
+ iotSocketConnect (rc, ip, NET_ADDR_IP4_LEN, port);
+
+ while(1){
+
+      /*等待接收*/
+     res = iotSocketRecv (rc, _gBuf, 8);    
+     if(res >= 0)
+     {
+       printf("iot_ok\r\n");
+     }
+         osDelay(500);    
+}
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="使用iot-socket-API-编写客户端发送"><a href="#使用iot-socket-API-编写客户端发送" class="headerlink" title="使用iot socket API 编写客户端发送"></a>使用iot socket API 编写客户端发送</h2><pre class="line-numbers language-C"><code class="language-C">uint8_t _gBuf[8] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88};
+void iot_thread(void)
+{
+ int32_t rc;
+ int32_t res;
+ uint8_t ip[4] = {192, 168, 1, 106};
+ uint16_t port = 2000;
+ rc = iotSocketCreate(IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
+
+ iotSocketConnect (rc, ip, NET_ADDR_IP4_LEN, port);
+
+while(1){
+
+     /*发送数据*/
+     res = iotSocketSend(rc, _gBuf, 8);
+     if(res > 0 )
+     {
+        printf("send data %d byte\r\n", res);
+     }
+         osDelay(500);    
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<p>}</p>
+<p> ```</p>
+]]></content>
+      <categories>
+        <category>keil 组件</category>
+      </categories>
+      <tags>
+        <tag>RTX5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【MQTT】MQTT调试助手mqttfx</title>
+    <url>/posts/4278564289/</url>
+    <content><![CDATA[<h2 id="1-Mqttfx"><a href="#1-Mqttfx" class="headerlink" title="1. Mqttfx"></a>1. Mqttfx</h2><p>MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工具。支持通过Topic订阅和发布消息，用来前期和物理云平台调试非常方便。</p>
+<h2 id="2-Mqttfx使用"><a href="#2-Mqttfx使用" class="headerlink" title="2. Mqttfx使用"></a>2. Mqttfx使用</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
+      <categories>
+        <category>MQTT</category>
+      </categories>
+      <tags>
+        <tag>MQTT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【RTX5】事件标志组</title>
     <url>/posts/4278564288/</url>
     <content><![CDATA[<h1 id="事件标志组"><a href="#事件标志组" class="headerlink" title="事件标志组"></a>事件标志组</h1><blockquote>
