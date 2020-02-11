@@ -7,8 +7,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签, 嵌入式软件  C/C++ ARM STM32 物联网">
-    <meta name="description" content="标签 | wlyumu">
+    <meta name="keywords" content="【keil】 iot_socket组件, 嵌入式软件  C/C++ ARM STM32 物联网">
+    <meta name="description" content="iot_socket组件基本使用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>标签 | wlyumu</title>
+    <title>【keil】 iot_socket组件 | wlyumu</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">tags</h1>
+                    <h1 class="description center-align post-title">【keil】 iot_socket组件</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/RTX5/">
+                                <span class="chip bg-color">RTX5</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/keil-%E7%BB%84%E4%BB%B6/" class="post-category">
+                                keil 组件
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -444,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-12
+                    20120-02-10
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-01-12
+                    2020-02-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    247
                 </div>
                 
 
@@ -481,7 +494,103 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="iot-socket-组件"><a href="#iot-socket-组件" class="headerlink" title="iot_socket 组件"></a>iot_socket 组件</h2><p> iot_socket 组件是keil对RL_TcpNet的bsd socket API 封装。</p>
+<h2 id="iot-socket-API"><a href="#iot-socket-API" class="headerlink" title="iot_socket API"></a>iot_socket API</h2><ul>
+<li><p>iotSocketCreate</p>
+<pre class="line-numbers language-C"><code class="language-C">原型:int32_t iotSocketCreate (int32_t af, int32_t type, int32_t protocol) 
+参数：
+  af ：iot socket 地址类型
+      IOT_SOCKET_AF_INET  -----   IPV4
+      IOT_SOCKET_AF_INET6 -----   IPV6
+ type: iot socket连接类型
+      IOT_SOCKET_SOCK_STREAM
+      IOT_SOCKET_SOCK_DGRAM
+ protocol：
+      IOT_SOCKET_IPPROTO_TCP ----  tcp协议控制
+      IPPROTO_UDP            ----  udp协议控制
+返回值：创建的socket<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>iotSocketConnect</p>
+<pre class="line-numbers language-C"><code class="language-C">原型：int32_t iotSocketConnect (int32_t socket, const uint8_t *ip, uint32_t ip_len, uint16_t port)
+参数：
+  socket：连接的套接字
+  ip    : ip地址
+  ip_len：IP地址长度
+          NET_ADDR_IP4_LEN
+          NET_ADDR_IP6_LEN
+  port  : 端口
+返回值: 状态码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>iotSocketRecv</p>
+<pre class="line-numbers language-C"><code class="language-C">原型：int32_t iotSocketRecv (int32_t socket, void *buf, uint32_t len) 
+参数：
+  socket：连接的套接字
+  buf   : 要接收的数据缓冲区
+  len   : 接收数据的长度
+返回值: >0   接收字节数
+     <0   错误码, 参考rc_bsd_to_iot错误码处理函数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>iotSocketSend</p>
+<pre class="line-numbers language-C"><code class="language-C">原型：int32_t iotSocketSend (int32_t socket, const void *buf, uint32_t len)
+参数：
+   socket：连接的套接字
+   buf   : 发送数据的缓冲区
+   len   : 发送数据的长度
+返回值：>0  发送字节数
+     <0  c错误码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="使用iot-socket-API-编写客户端接收"><a href="#使用iot-socket-API-编写客户端接收" class="headerlink" title="使用iot socket API 编写客户端接收"></a>使用iot socket API 编写客户端接收</h2><pre class="line-numbers language-C"><code class="language-C"> void iot_thread(void)
+{
+    int32_t rc;  /*socket 套接字*/
+    int32_t res; 
+    uint8_t ip[4] = {192, 168, 1, 106};  
+    uint16_t port = 2000;
+
+    /*创建socket*/
+    rc = iotSocketCreate(IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
+
+    /*连接指定的ip*/
+    iotSocketConnect (rc, ip, NET_ADDR_IP4_LEN, port);
+
+    while(1){
+
+         /*等待接收*/
+        res = iotSocketRecv (rc, _gBuf, 8);    
+        if(res >= 0)
+        {
+          printf("iot_ok\r\n");
+        }
+            osDelay(500);    
+   }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="使用iot-socket-API-编写客户端发送"><a href="#使用iot-socket-API-编写客户端发送" class="headerlink" title="使用iot socket API 编写客户端发送"></a>使用iot socket API 编写客户端发送</h2><pre class="line-numbers language-C"><code class="language-C"> uint8_t _gBuf[8] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88};
+void iot_thread(void)
+{
+    int32_t rc;
+    int32_t res;
+    uint8_t ip[4] = {192, 168, 1, 106};
+    uint16_t port = 2000;
+    rc = iotSocketCreate(IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
+
+    iotSocketConnect (rc, ip, NET_ADDR_IP4_LEN, port);
+
+  while(1){
+
+        /*发送数据*/
+        res = iotSocketSend(rc, _gBuf, 8);
+        if(res > 0 )
+        {
+           printf("send data %d byte\r\n", res);
+        }
+            osDelay(500);    
+   }
+
+
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr/>
 
@@ -496,7 +605,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn" rel="external nofollow noreferrer">wlyumu</a>
+                    <a href="http://wlyumu.cn" rel="external nofollow noreferrer">wl</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -506,7 +615,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn/tags/index.html">http://wlyumu.cn/tags/index.html</a>
+                    <a href="http://wlyumu.cn/posts/4/">http://wlyumu.cn/posts/4/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -519,7 +628,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://wlyumu.cn" target="_blank">wlyumu</a>
+                    <a href="http://wlyumu.cn" target="_blank">wl</a>
                     !
                 </span>
             </div>
@@ -543,7 +652,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/RTX5/">
+                                    <span class="chip bg-color">RTX5</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -734,34 +847,46 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/tags/index.html">
+                <a href="/posts/4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【keil】 iot_socket组件">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">【keil】 iot_socket组件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            iot_socket组件基本使用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-12
+                                <i class="far fa-clock fa-fw icon-date"></i>20120-02-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            wlyumu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/keil-%E7%BB%84%E4%BB%B6/" class="post-category">
+                                    keil 组件
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RTX5/">
+                        <span class="chip bg-color">RTX5</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -769,37 +894,48 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tags/index.html">
+                <a href="/posts/3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【MQTT】MQTT调试助手mqttfx">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">【MQTT】MQTT调试助手mqttfx</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            MQTT调试助手mqttfx
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-12
+                                <i class="far fa-clock fa-fw icon-date"></i>20120-02-08
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            wlyumu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MQTT/" class="post-category">
+                                    MQTT
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MQTT/">
+                        <span class="chip bg-color">MQTT</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

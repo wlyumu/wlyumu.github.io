@@ -7,16 +7,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【Emwin】显示字体, 嵌入式软件  C/C++ ARM STM32 物联网">
-    <meta name="description" content="官方demo#include &#34;GUI.h&#34;
-
-#define RECOMMENDED_MEMPRY (1024L * 5)
-
-void MainTask(void)
-{
-    int xPos;
-    int yPos;
-    in">
+    <meta name="keywords" content="【RTX5】事件标志组, 嵌入式软件  C/C++ ARM STM32 物联网">
+    <meta name="description" content="RTX5 -- 事件标志的基本使用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +16,7 @@ void MainTask(void)
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Emwin】显示字体 | wlyumu</title>
+    <title>【RTX5】事件标志组 | wlyumu</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -318,12 +310,12 @@ void MainTask(void)
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【Emwin】显示字体</h1>
+                    <h1 class="description center-align post-title">【RTX5】事件标志组</h1>
                 </div>
             </div>
         </div>
@@ -440,8 +432,8 @@ void MainTask(void)
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/GUI/">
-                                <span class="chip bg-color">GUI</span>
+                            <a href="/tags/RTX5/">
+                                <span class="chip bg-color">RTX5</span>
                             </a>
                         
                     </div>
@@ -452,8 +444,8 @@ void MainTask(void)
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Emwin/" class="post-category">
-                                Emwin
+                            <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                嵌入式系统
                             </a>
                         
                     </div>
@@ -465,28 +457,28 @@ void MainTask(void)
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-09
+                    20120-01-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-01-15
+                    2020-02-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    388
+                    777
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -502,79 +494,129 @@ void MainTask(void)
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="官方demo"><a href="#官方demo" class="headerlink" title="官方demo"></a>官方demo</h2><pre class="line-numbers language-C"><code class="language-C">#include "GUI.h"
+                <h1 id="事件标志组"><a href="#事件标志组" class="headerlink" title="事件标志组"></a>事件标志组</h1><blockquote>
+<p>事件标志组是一种实现多任务同步机制。<br>优点：</p>
+<ol>
+<li>方便RTOS有效管理任务， 实现多任务之间的同步</li>
+<li>有效解决中断服务程序和任务之间的同步问题</li>
+</ol>
+</blockquote>
+<h2 id="事件标志API"><a href="#事件标志API" class="headerlink" title="事件标志API"></a>事件标志API</h2><h3 id="1-创建事件标志对象"><a href="#1-创建事件标志对象" class="headerlink" title="1. 创建事件标志对象"></a>1. 创建事件标志对象</h3><pre class="line-numbers language-C"><code class="language-C">原型 
+osEventFlagsId_t osEventFlagsNew(const osEventFlagsAttr_t * attr)    
+attr    : 事件标志属性   默认为NULL  
+Returns : 返回事件ID , 出现错误则返回 NULL
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-设置定的事件标志"><a href="#2-设置定的事件标志" class="headerlink" title="2. 设置定的事件标志"></a>2. 设置定的事件标志</h3><pre class="line-numbers language-C"><code class="language-C">原型： uint32_t osEventFlagsSet    (    osEventFlagsId_t     ef_id, uint32_t flags)    
+ef_id   : 要设置事件的ID
+flags   : 指定应设置的标志 ，该标志只能设置0bit - 30bit, 设置最高位则是设置错误代码
+Returns : 返回设置后设置事件的标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-清除指定的事件标志"><a href="#3-清除指定的事件标志" class="headerlink" title="3.清除指定的事件标志"></a>3.清除指定的事件标志</h3><pre class="line-numbers language-C"><code class="language-C">原型: uint32_t osEventFlagsClear    (    osEventFlagsId_t     ef_id, uint32_t     flags)
+ef_id      : 要设置事件的ID
+flags   : 指定应清除的标志
+Returns ：返回清除前的事件标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-获取当前事件标志对象的事件标志"><a href="#4-获取当前事件标志对象的事件标志" class="headerlink" title="4. 获取当前事件标志对象的事件标志"></a>4. 获取当前事件标志对象的事件标志</h3><pre class="line-numbers language-C"><code class="language-C">原型：uint32_t osEventFlagsGet    (osEventFlagsId_t     ef_id)
+ef_id   ： 事件的ID
+Returns ： 返回当前事件对象的事件标志<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="5-等待事件标志"><a href="#5-等待事件标志" class="headerlink" title="5. 等待事件标志"></a>5. 等待事件标志</h3><pre class="line-numbers language-C"><code class="language-C">原型：uint32_t osEventFlagsWait    (    osEventFlagsId_t     ef_id,
+                                  uint32_t     flags,
+                                  uint32_t     options,
+                                  uint32_t     timeout 
+                                 )    
+ef_id   ： 所等待的事件对象
+flags   ： 指定等待事件标志
+options ： 等待条件
+           osFlagsWaitAny        等待任何标志
+           osFlagsWaitAll        等待所有标志
+           osFlagsNoClear        不要清除已指定要等待的标志，一般用于手动清除
 
-#define RECOMMENDED_MEMPRY (1024L * 5)
+timeout ：系统等待事件标志的时间 ， 如果该值设为osWaitForever该函数将等待无限的
+          时间，直到事件标志变为可用。
+Returns ：如果等到事件标志则返回该事件标志或者返回错误码，错误码如下：
+          osFlagsErrorUnknown(-1)   未指定的错误
+          osFlagsErrorTimeout(-2)   在给定的时间内尚未设置等待的标志
+          osFlagsErrorResource(-3)  未指定超时时，尚未设置等待的标志
+          osFlagsErrorParameter(-4) 参数ef_id无法标识有效的事件标志对象或标志
+                                    的最高位设置。
+          osFlagsErrorISR      (-6) 该函数不能再中断里使用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="6">
+<li>删除事件标志对象</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">原型：osStatus_t osEventFlagsDelete( osEventFlagsId_t     ef_id    ) 
+ef_id  : 事件对象
+Returns: 状态代码，指示功能的执行状态<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="7-获取事件对象的名称"><a href="#7-获取事件对象的名称" class="headerlink" title="7. 获取事件对象的名称"></a>7. 获取事件对象的名称</h3><pre class="line-numbers language-C"><code class="language-C">ef_id  : 事件对象
+Returns: 事件对象的名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="事件标志组使用"><a href="#事件标志组使用" class="headerlink" title="事件标志组使用"></a>事件标志组使用</h2><ol>
+<li>两个线程如何使用事件标志组通信示意图<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/RTX/%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG" alt="logo"></li>
+</ol>
+<h3 id="1-事件标志组使用示例"><a href="#1-事件标志组使用示例" class="headerlink" title="1. 事件标志组使用示例"></a>1. 事件标志组使用示例</h3><pre class="line-numbers language-C"><code class="language-C"> #include "cmsis_os2.h"                      
 
-void MainTask(void)
-{
-    int xPos;
-    int yPos;
-    int xSize;
-    int i;
-    i = 0;
+/*事件标志*/ 
+#define FLAGS_MSK1 0x00000001U
 
-    GUI_Init();
+/*事件对象*/ 
+osEventFlagsId_t evt_id;                        
 
-    if (GUI_ALLOC_GetNumFreeBytes() < RECOMMENDED_MEMPRY)
-    {
-        GUI_ErrorOut("not enough memory available");
-        return;
-    }
+/*发送事件标志线程ID*/ 
+osThreadId_t tid_Thread_EventSender;  
+/*接收事件标志线程ID*/           
+osThreadId_t tid_Thread_EventReceiver;          
 
-    xPos = LCD_GetXSize() / 2;
-    yPos = LCD_GetYSize() / 2;
+void Thread_EventSender   (void *argument);  
+void Thread_EventReceiver (void *argument);     
 
-    GUI_SetTextMode(GUI_TM_REV);
-    GUI_SetFont(GUI_FONT_20F_ASCII);
-    GUI_DispStringHCenterAt("Hello world!", xPos, yPos);
+int Init_Events (void) {
+  /*创建事件对象*/
+  evt_id = osEventFlagsNew(NULL);
+  if (evt_id == NULL) {
+    /*线程对象创建失败处理*/
+  }
 
-    GUI_SetFont(GUI_FONT_D24X32);
-    xSize = GUI_GetStringDistX("0000");
-    xPos -= xSize / 2;
-    yPos += 24 + 10;
-
-    while (1)
-    {
-        GUI_DispDecAt(i ++, xPos, yPos, 4);
-        if (i > 9999)
-        {
-            i = 0;
-        }
-    }
-
+ /*创建发送事件标志线程*/
+  tid_Thread_EventSender = osThreadNew(Thread_EventSender, NULL, NULL);
+  if (tid_Thread_EventSender == NULL) {
+    return(-1);
+  }
+   /*创建接收事件标志线程*/
+  tid_Thread_EventReceiver = osThreadNew(Thread_EventReceiver, NULL, NULL);
+  if (tid_Thread_EventReceiver == NULL) {
+    return(-1);
+  }
+  return(0);
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="函数说明"><a href="#函数说明" class="headerlink" title="函数说明"></a>函数说明</h2><ul>
-<li>GUI_SetTextMode</li>
-</ul>
-<blockquote>
-<p>原    型：int GUI_SetTextMode(int TextMode)<br>函数说明：设置文本模式<br>参    数：<br>      GUI_TEXTMODE_NORMAL      文本正常显示。这是默认设置;这个值等于0<br>       GUI_TEXTMODE_REV         文本反向显示。(实测背景色相反)<br>       GUI_TEXTMODE_TRANS       文本显示为透明<br>       GUI_TEXTMODE_XOR         文本反转背景</p>
-</blockquote>
-<ul>
-<li>GUI_SetFont</li>
-</ul>
-<blockquote>
-<p>原    型：const GUI_FONT * GUI_SetFont(const GUI_FONT * pNewFont)<br>函数说明：设置用于文本输出的字体<br>参    数：<br>         pNewFont:指向要选择和使用的字体的指针,例如GUI_FONT_20F_ASCII</p>
-</blockquote>
-<ul>
-<li>GUI_DispStringHCenterAt</li>
-</ul>
-<blockquote>
-<p>原    型：void GUI_DispStringHCenterAt(const char * s, int x, int y);<br>函数说明：显示作为参数传递的字符串在指定位置水平居中在当前窗口中使用当前字体<br>参    数：<br>        s:要显示的字符串<br>        x:显示位置横坐标<br>        y:显示位置纵坐标</p>
-</blockquote>
-<ul>
-<li>GUI_GetStringDistX</li>
-</ul>
-<blockquote>
-<p>原    型：int GUI_GetStringDistX(const char * s);<br>函数说明：返回用于以当前选定字体显示指定字符串的X-size<br>参    数：<br>        s:指定字符串</p>
-</blockquote>
-<ul>
-<li>GUI_DispDecAt</li>
-</ul>
-<blockquote>
-<p>原    型：void GUI_DispDecAt(I32 v, I16P x, I16P y, U8 Len);<br>函数说明：以十进制形式显示具有指定字符数的值，使用当前字体在当前窗口中的位置。<br>参    数：<br>        v  :显示的十进制的值<br>        x  :显示位置的横坐标<br>        y  :显示位置的纵坐标<br>        len:显示的最大位数</p>
-</blockquote>
+
+void Thread_EventSender (void *argument) {
+
+  while (1) {  
+    /*设置事件标志*/  
+    osEventFlagsSet(evt_id, FLAGS_MSK1);
+    /*挂起任务*/
+    osThreadYield();                           s
+  }
+}
+
+void Thread_EventReceiver (void *argument) {
+  uint32_t flags;
+
+  while (1) {
+    /*阻塞等待接收事件，直到等到该事件标志*/
+    flags = osEventFlagsWait(evt_id, FLAGS_MSK1, osFlagsWaitAny, osWaitForever);
+
+    /*根据等到的事件标志来执行相应的动作*/
+    switch(flags)
+    {
+      case EVENT_1:
+
+      break;
+      case EVENT_2:
+
+      break;
+     default:
+      break;
+    }
+  }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -590,7 +632,7 @@ void MainTask(void)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn" rel="external nofollow noreferrer">wlyumu</a>
+                    <a href="http://wlyumu.cn" rel="external nofollow noreferrer">wl</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -600,7 +642,7 @@ void MainTask(void)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn/posts/4278564287/">http://wlyumu.cn/posts/4278564287/</a>
+                    <a href="http://wlyumu.cn/posts/2/">http://wlyumu.cn/posts/2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -613,7 +655,7 @@ void MainTask(void)
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://wlyumu.cn" target="_blank">wlyumu</a>
+                    <a href="http://wlyumu.cn" target="_blank">wl</a>
                     !
                 </span>
             </div>
@@ -638,8 +680,8 @@ void MainTask(void)
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/GUI/">
-                                    <span class="chip bg-color">GUI</span>
+                                <a href="/tags/RTX5/">
+                                    <span class="chip bg-color">RTX5</span>
                                 </a>
                             
                         </div>
@@ -831,7 +873,56 @@ void MainTask(void)
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/4278564289/">
+                <a href="/posts/3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【MQTT】MQTT调试助手mqttfx">
+                        
+                        <span class="card-title">【MQTT】MQTT调试助手mqttfx</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            MQTT调试助手mqttfx
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>20120-02-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MQTT/" class="post-category">
+                                    MQTT
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MQTT/">
+                        <span class="chip bg-color">MQTT</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/1/">
                     <div class="card-image">
                         
                         
@@ -857,9 +948,9 @@ project(&lt;PROJECT-NAME&gt;)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -879,43 +970,6 @@ project(&lt;PROJECT-NAME&gt;)
                         <span class="chip bg-color">自动化管理工程</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/1243066710/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-09
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            wlyumu
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
@@ -1062,7 +1116,7 @@ project(&lt;PROJECT-NAME&gt;)
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2k</span>&nbsp;字
+                class="white-color">2.1k</span>&nbsp;字
             
             
             

@@ -7,18 +7,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Cmake用法, 嵌入式软件  C/C++ ARM STM32 物联网">
-    <meta name="description" content="Cmake基本用法
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)
+    <meta name="keywords" content="【Emwin】显示字体, 嵌入式软件  C/C++ ARM STM32 物联网">
+    <meta name="description" content="官方demo#include &#34;GUI.h&#34;
 
+#define RECOMMENDED_MEMPRY (1024L * 5)
 
-指定Cmake最低版本需求 2.83
-
-
-project(&amp;lt;PROJECT-NAME&amp;gt;)
-
-
-指定项目名称  例如：PROJEC">
+void MainTask(void)
+{
+    int xPos;
+    int yPos;
+    in">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +24,7 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Cmake用法 | wlyumu</title>
+    <title>【Emwin】显示字体 | wlyumu</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +318,12 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Cmake用法</h1>
+                    <h1 class="description center-align post-title">【Emwin】显示字体</h1>
                 </div>
             </div>
         </div>
@@ -442,8 +440,8 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B/">
-                                <span class="chip bg-color">自动化管理工程</span>
+                            <a href="/tags/GUI/">
+                                <span class="chip bg-color">GUI</span>
                             </a>
                         
                     </div>
@@ -454,8 +452,8 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Cmake/" class="post-category">
-                                Cmake
+                            <a href="/categories/Emwin/" class="post-category">
+                                Emwin
                             </a>
                         
                     </div>
@@ -474,21 +472,21 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-01-15
+                    2020-02-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    476
+                    388
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -504,124 +502,79 @@ project(&amp;lt;PROJECT-NAME&amp;gt;)
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Cmake基本用法"><a href="#Cmake基本用法" class="headerlink" title="Cmake基本用法"></a>Cmake基本用法</h2><ul>
-<li>CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)</li>
+                <h2 id="官方demo"><a href="#官方demo" class="headerlink" title="官方demo"></a>官方demo</h2><pre class="line-numbers language-C"><code class="language-C">#include "GUI.h"
+
+#define RECOMMENDED_MEMPRY (1024L * 5)
+
+void MainTask(void)
+{
+    int xPos;
+    int yPos;
+    int xSize;
+    int i;
+    i = 0;
+
+    GUI_Init();
+
+    if (GUI_ALLOC_GetNumFreeBytes() < RECOMMENDED_MEMPRY)
+    {
+        GUI_ErrorOut("not enough memory available");
+        return;
+    }
+
+    xPos = LCD_GetXSize() / 2;
+    yPos = LCD_GetYSize() / 2;
+
+    GUI_SetTextMode(GUI_TM_REV);
+    GUI_SetFont(GUI_FONT_20F_ASCII);
+    GUI_DispStringHCenterAt("Hello world!", xPos, yPos);
+
+    GUI_SetFont(GUI_FONT_D24X32);
+    xSize = GUI_GetStringDistX("0000");
+    xPos -= xSize / 2;
+    yPos += 24 + 10;
+
+    while (1)
+    {
+        GUI_DispDecAt(i ++, xPos, yPos, 4);
+        if (i > 9999)
+        {
+            i = 0;
+        }
+    }
+
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="函数说明"><a href="#函数说明" class="headerlink" title="函数说明"></a>函数说明</h2><ul>
+<li>GUI_SetTextMode</li>
 </ul>
 <blockquote>
-<p>指定Cmake最低版本需求 2.83</p>
+<p>原    型：int GUI_SetTextMode(int TextMode)<br>函数说明：设置文本模式<br>参    数：<br>      GUI_TEXTMODE_NORMAL      文本正常显示。这是默认设置;这个值等于0<br>       GUI_TEXTMODE_REV         文本反向显示。(实测背景色相反)<br>       GUI_TEXTMODE_TRANS       文本显示为透明<br>       GUI_TEXTMODE_XOR         文本反转背景</p>
 </blockquote>
 <ul>
-<li>project(&lt;PROJECT-NAME&gt;)</li>
+<li>GUI_SetFont</li>
 </ul>
 <blockquote>
-<p>指定项目名称  例如：PROJECT(hello)</p>
+<p>原    型：const GUI_FONT * GUI_SetFont(const GUI_FONT * pNewFont)<br>函数说明：设置用于文本输出的字体<br>参    数：<br>         pNewFont:指向要选择和使用的字体的指针,例如GUI_FONT_20F_ASCII</p>
 </blockquote>
 <ul>
-<li>AUX_SOURCE_DIRECTORY(&lt;dir&gt;   &lt;variable&gt;)</li>
+<li>GUI_DispStringHCenterAt</li>
 </ul>
 <blockquote>
-<p>添加某路径下的所有源文件，并将该路径用变量来表示</p>
+<p>原    型：void GUI_DispStringHCenterAt(const char * s, int x, int y);<br>函数说明：显示作为参数传递的字符串在指定位置水平居中在当前窗口中使用当前字体<br>参    数：<br>        s:要显示的字符串<br>        x:显示位置横坐标<br>        y:显示位置纵坐标</p>
 </blockquote>
 <ul>
-<li>ADD_EXECUTABLE(生成可执行文件的名字  变量)</li>
+<li>GUI_GetStringDistX</li>
 </ul>
 <blockquote>
-<p>ADD_EXECUTABLE(hello ${SRC_LIST})<br>将变量SRC_LIST表示路径下源文件编译，并生成可执行文件hello</p>
-</blockquote>
-<h2 id="同一目录，多文件"><a href="#同一目录，多文件" class="headerlink" title="同一目录，多文件"></a>同一目录，多文件</h2><blockquote>
-<p>./Demo<br>|<br>+—-main.cc<br>|<br>+—-function.c<br>|<br>+—-function.h</p>
-</blockquote>
-<p>这种CmakeLists.txt写法如下：</p>
-<blockquote>
-<p>CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)<br>project(Demo)<br>AUX_SOURCE_DIRECTORY(./Demo  SRC)<br>ADD_EXECUTABLE(function ${SRC})</p>
-</blockquote>
-<h2 id="多目录，多文件"><a href="#多目录，多文件" class="headerlink" title="多目录，多文件"></a>多目录，多文件</h2><blockquote>
-<p>./Demo<br>|<br>+—main.cc<br>|<br>+—function/<br>|<br>+—function.cc<br>|<br>+—function.h</p>
-</blockquote>
-<p>主目录 CmakeLists.txt写法如下：</p>
-<blockquote>
-<p>CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)<br>PROJECT(Demo)<br>AUX_SOURCE_DIRECTORY(./Demo SRC)<br>subdirectory(function)<br>ADD_EXECUTABLE(Demo ${SRC})</p>
-</blockquote>
-<p>子目录 CmakeLists.txt写法如下：</p>
-<blockquote>
-<p>AUX_SOURCE_DIRECTORY(. SUB_SRC)</p>
+<p>原    型：int GUI_GetStringDistX(const char * s);<br>函数说明：返回用于以当前选定字体显示指定字符串的X-size<br>参    数：<br>        s:指定字符串</p>
 </blockquote>
 <ul>
-<li>find_package</li>
+<li>GUI_DispDecAt</li>
 </ul>
-<pre class="line-numbers language-C"><code class="language-C">原型 ：find_package(<package> [version] [EXACT] [QUIET] [MODULE]
-            [REQUIRED] [[COMPONENTS] [components...]]
-            [OPTIONAL_COMPONENTS components...]
-            [NO_POLICY_SCOPE])
- <package>   :指定查找的软件包
- [QUIET]     :如果找不到软件包，该选项将禁用警告消息
- [MODULE]    :禁用下面记录的第二个签名
- [REQUIRED]  :其含义是指是否是工程必须的，表示如果没有找到的
-              话，cmake的过程会终止，并发出警告信息
- [COMPONENTS]:在REQUIRED选项之后，或者如果没有指定REQUIRED选项
-              但指定了COMPONENTS选项，在它们的后面可以列出一包
-              相关(依赖)的部件清单。
-示例 ： find_package(Protobuf REQUIRED)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>target_link_libraries</li>
-</ul>
-<pre class="line-numbers language-C"><code class="language-C">原型： target_link_libraries(<target> [item1] [item2] [...]
-                         [[debug|optimized|general] <item>] ...)
-用法： target_link_libraries(projectname  Libname);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>find_package 和 target_link_libraries示例</li>
-</ul>
-<pre class="line-numbers language-C"><code class="language-C">cmake_minimum_required(VERSION 2.8.3)
-project(VMSClient)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_BUILD_TYPE RELEASE)
-find_package(catkin REQUIRED COMPONENTS
-        roscpp
-        sensor_msgs
-        std_msgs
-        aisimba_msgs
-        )
-
-catkin_package()
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5WebSockets REQUIRED)
-find_package(Qt5Network REQUIRED)
-find_package(Protobuf REQUIRED)
-
-if (PROTOBUF_FOUND)
-    message(STATUS "protobuf library found")
-else ()
-    message(FATAL_ERROR "protobuf library is needed but cant be found")
-endif ()
-
-include_directories(
-        include
-        ${catkin_INCLUDE_DIRS}
-)
-
-include_directories(${PROTOBUF_INCLUDE_DIRS})
-include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/proto_src)
-
-file(GLOB_RECURSE SRC src/*.c src/*.cpp proto_src/*.cc)
-file(GLOB_RECURSE INC include/*.h include/*.hpp proto_src/*.h)
-
-add_executable(${PROJECT_NAME}_node ${INC} ${SRC})
-add_definitions(-std=c++11 -g -O3 -Wno-deprecated -Wno-dev)
-add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
-target_link_libraries(${PROJECT_NAME}_node
-        ${catkin_LIBRARIES}
-        ${PROTOBUF_LIBRARIES}
-        Qt5::Widgets
-        Qt5::Core
-        Qt5::Gui
-        Qt5::WebSockets
-        Qt5::Network
-        glog
-        )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>原    型：void GUI_DispDecAt(I32 v, I16P x, I16P y, U8 Len);<br>函数说明：以十进制形式显示具有指定字符数的值，使用当前字体在当前窗口中的位置。<br>参    数：<br>        v  :显示的十进制的值<br>        x  :显示位置的横坐标<br>        y  :显示位置的纵坐标<br>        len:显示的最大位数</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -647,7 +600,7 @@ target_link_libraries(${PROJECT_NAME}_node
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn/posts/4278564289/">http://wlyumu.cn/posts/4278564289/</a>
+                    <a href="http://wlyumu.cn/posts/5/">http://wlyumu.cn/posts/5/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -685,8 +638,8 @@ target_link_libraries(${PROJECT_NAME}_node
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B/">
-                                    <span class="chip bg-color">自动化管理工程</span>
+                                <a href="/tags/GUI/">
+                                    <span class="chip bg-color">GUI</span>
                                 </a>
                             
                         </div>
@@ -878,31 +831,41 @@ target_link_libraries(${PROJECT_NAME}_node
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/4278564288/">
+                <a href="/posts/1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【RTX5】事件标志组">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Cmake用法">
                         
-                        <span class="card-title">【RTX5】事件标志组</span>
+                        <span class="card-title">Cmake用法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            RTX5 -- 事件标志的基本使用
+                            Cmake基本用法
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)
+
+
+指定Cmake最低版本需求 2.83
+
+
+project(&lt;PROJECT-NAME&gt;)
+
+
+指定项目名称  例如：PROJEC
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>20120-01-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-09
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    嵌入式系统
+                            <a href="/categories/Cmake/" class="post-category">
+                                    Cmake
                                 </a>
                             
                             
@@ -912,8 +875,8 @@ target_link_libraries(${PROJECT_NAME}_node
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/RTX5/">
-                        <span class="chip bg-color">RTX5</span>
+                    <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B/">
+                        <span class="chip bg-color">自动化管理工程</span>
                     </a>
                     
                 </div>
@@ -927,27 +890,19 @@ target_link_libraries(${PROJECT_NAME}_node
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/4278564287/">
+                <a href="/posts/1243066710/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【Emwin】显示字体">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">【Emwin】显示字体</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            官方demo#include "GUI.h"
-
-#define RECOMMENDED_MEMPRY (1024L * 5)
-
-void MainTask(void)
-{
-    int xPos;
-    int yPos;
-    in
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
                         
                     </div>
                     <div class="publish-info">
@@ -956,23 +911,11 @@ void MainTask(void)
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Emwin/" class="post-category">
-                                    Emwin
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            wlyumu
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/GUI/">
-                        <span class="chip bg-color">GUI</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1119,7 +1062,7 @@ void MainTask(void)
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2k</span>&nbsp;字
+                class="white-color">2.1k</span>&nbsp;字
             
             
             

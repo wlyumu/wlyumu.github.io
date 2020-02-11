@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>【keil】 iot_socket组件</title>
-    <url>/posts/4278564289/</url>
+    <url>/posts/4/</url>
     <content><![CDATA[<h2 id="iot-socket-组件"><a href="#iot-socket-组件" class="headerlink" title="iot_socket 组件"></a>iot_socket 组件</h2><p> iot_socket 组件是keil对RL_TcpNet的bsd socket API 封装。</p>
 <h2 id="iot-socket-API"><a href="#iot-socket-API" class="headerlink" title="iot_socket API"></a>iot_socket API</h2><ul>
 <li><p>iotSocketCreate</p>
@@ -40,69 +40,65 @@
      <0   错误码, 参考rc_bsd_to_iot错误码处理函数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>iotSocketSend</p>
-</li>
-</ul>
 <pre class="line-numbers language-C"><code class="language-C">原型：int32_t iotSocketSend (int32_t socket, const void *buf, uint32_t len)
 参数：
-      socket：连接的套接字
-      buf   : 发送数据的缓冲区
-      len   : 发送数据的长度
+   socket：连接的套接字
+   buf   : 发送数据的缓冲区
+   len   : 发送数据的长度
 返回值：>0  发送字节数
-        <0  c错误码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li><p>使用iot socket API 编写客户端接收</p>
-<pre class="line-numbers language-C"><code class="language-C">void iot_thread(void)
-{
- int32_t rc;  /*socket 套接字*/
- int32_t res; 
- uint8_t ip[4] = {192, 168, 1, 106};  
- uint16_t port = 2000;
-
- /*创建socket*/
- rc = iotSocketCreate(IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
-
- /*连接指定的ip*/
- iotSocketConnect (rc, ip, NET_ADDR_IP4_LEN, port);
-
- while(1){
-
-      /*等待接收*/
-     res = iotSocketRecv (rc, _gBuf, 8);    
-     if(res >= 0)
-     {
-       printf("iot_ok\r\n");
-     }
-         osDelay(500);    
-}
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="使用iot-socket-API-编写客户端发送"><a href="#使用iot-socket-API-编写客户端发送" class="headerlink" title="使用iot socket API 编写客户端发送"></a>使用iot socket API 编写客户端发送</h2><pre class="line-numbers language-C"><code class="language-C">uint8_t _gBuf[8] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88};
-void iot_thread(void)
-{
- int32_t rc;
- int32_t res;
- uint8_t ip[4] = {192, 168, 1, 106};
- uint16_t port = 2000;
- rc = iotSocketCreate(IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
-
- iotSocketConnect (rc, ip, NET_ADDR_IP4_LEN, port);
-
-while(1){
-
-     /*发送数据*/
-     res = iotSocketSend(rc, _gBuf, 8);
-     if(res > 0 )
-     {
-        printf("send data %d byte\r\n", res);
-     }
-         osDelay(500);    
-}
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+     <0  c错误码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
-<p>}</p>
-<p> ```</p>
+<h2 id="使用iot-socket-API-编写客户端接收"><a href="#使用iot-socket-API-编写客户端接收" class="headerlink" title="使用iot socket API 编写客户端接收"></a>使用iot socket API 编写客户端接收</h2><pre class="line-numbers language-C"><code class="language-C"> void iot_thread(void)
+{
+    int32_t rc;  /*socket 套接字*/
+    int32_t res; 
+    uint8_t ip[4] = {192, 168, 1, 106};  
+    uint16_t port = 2000;
+
+    /*创建socket*/
+    rc = iotSocketCreate(IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
+
+    /*连接指定的ip*/
+    iotSocketConnect (rc, ip, NET_ADDR_IP4_LEN, port);
+
+    while(1){
+
+         /*等待接收*/
+        res = iotSocketRecv (rc, _gBuf, 8);    
+        if(res >= 0)
+        {
+          printf("iot_ok\r\n");
+        }
+            osDelay(500);    
+   }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="使用iot-socket-API-编写客户端发送"><a href="#使用iot-socket-API-编写客户端发送" class="headerlink" title="使用iot socket API 编写客户端发送"></a>使用iot socket API 编写客户端发送</h2><pre class="line-numbers language-C"><code class="language-C"> uint8_t _gBuf[8] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88};
+void iot_thread(void)
+{
+    int32_t rc;
+    int32_t res;
+    uint8_t ip[4] = {192, 168, 1, 106};
+    uint16_t port = 2000;
+    rc = iotSocketCreate(IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
+
+    iotSocketConnect (rc, ip, NET_ADDR_IP4_LEN, port);
+
+  while(1){
+
+        /*发送数据*/
+        res = iotSocketSend(rc, _gBuf, 8);
+        if(res > 0 )
+        {
+           printf("send data %d byte\r\n", res);
+        }
+            osDelay(500);    
+   }
+
+
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>keil 组件</category>
@@ -113,9 +109,16 @@ while(1){
   </entry>
   <entry>
     <title>【MQTT】MQTT调试助手mqttfx</title>
-    <url>/posts/4278564289/</url>
+    <url>/posts/3/</url>
     <content><![CDATA[<h2 id="1-Mqttfx"><a href="#1-Mqttfx" class="headerlink" title="1. Mqttfx"></a>1. Mqttfx</h2><p>MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工具。支持通过Topic订阅和发布消息，用来前期和物理云平台调试非常方便。</p>
-<h2 id="2-Mqttfx使用"><a href="#2-Mqttfx使用" class="headerlink" title="2. Mqttfx使用"></a>2. Mqttfx使用</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
+<h2 id="2-Mqttfx使用"><a href="#2-Mqttfx使用" class="headerlink" title="2. Mqttfx使用"></a>2. Mqttfx使用</h2><ol>
+<li>MQTT基本配置<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT.fx.jpg?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT.fx.jpg" alt="MQTT基本配置"></li>
+<li>MQTT Username及PassWord<br>这个是根据MQTT服务器是否需要UserName和PassWord来配置，有则根据协议规则来配置，没有可以不配。<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT.fx_UserName_.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT.fx_UserName_.png" alt="MQTT Username及PassWord"></li>
+<li>MQTT 连接<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT.fxConnect.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT.fxConnect.png" alt="MQTT 连接"></li>
+<li>MQTT 发布<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT_Pulish.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT_Pulish.png" alt="MQTT 发布"></li>
+<li>MQTT 订阅<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT_Subscribe.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT_Subscribe.png" alt="MQTT 订阅"></li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
       <categories>
         <category>MQTT</category>
       </categories>
@@ -125,7 +128,7 @@ while(1){
   </entry>
   <entry>
     <title>【RTX5】事件标志组</title>
-    <url>/posts/4278564288/</url>
+    <url>/posts/2/</url>
     <content><![CDATA[<h1 id="事件标志组"><a href="#事件标志组" class="headerlink" title="事件标志组"></a>事件标志组</h1><blockquote>
 <p>事件标志组是一种实现多任务同步机制。<br>优点：</p>
 <ol>
@@ -179,7 +182,7 @@ Returns: 状态代码，指示功能的执行状态<span aria-hidden="true" clas
 <h3 id="7-获取事件对象的名称"><a href="#7-获取事件对象的名称" class="headerlink" title="7. 获取事件对象的名称"></a>7. 获取事件对象的名称</h3><pre class="line-numbers language-C"><code class="language-C">ef_id  : 事件对象
 Returns: 事件对象的名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="事件标志组使用"><a href="#事件标志组使用" class="headerlink" title="事件标志组使用"></a>事件标志组使用</h2><ol>
-<li>两个线程如何使用事件标志组通信示意图<br><img src="http://q3l3oiuxr.bkt.clouddn.com/%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG" alt="logo"></li>
+<li>两个线程如何使用事件标志组通信示意图<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/RTX/%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG" alt="logo"></li>
 </ol>
 <h3 id="1-事件标志组使用示例"><a href="#1-事件标志组使用示例" class="headerlink" title="1. 事件标志组使用示例"></a>1. 事件标志组使用示例</h3><pre class="line-numbers language-C"><code class="language-C"> #include "cmsis_os2.h"                      
 
@@ -259,7 +262,7 @@ void Thread_EventReceiver (void *argument) {
   </entry>
   <entry>
     <title>Cmake用法</title>
-    <url>/posts/4278564289/</url>
+    <url>/posts/1/</url>
     <content><![CDATA[<h2 id="Cmake基本用法"><a href="#Cmake基本用法" class="headerlink" title="Cmake基本用法"></a>Cmake基本用法</h2><ul>
 <li>CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)</li>
 </ul>
@@ -388,7 +391,7 @@ target_link_libraries(${PROJECT_NAME}_node
   </entry>
   <entry>
     <title>【Emwin】显示字体</title>
-    <url>/posts/4278564287/</url>
+    <url>/posts/5/</url>
     <content><![CDATA[<h2 id="官方demo"><a href="#官方demo" class="headerlink" title="官方demo"></a>官方demo</h2><pre class="line-numbers language-C"><code class="language-C">#include "GUI.h"
 
 #define RECOMMENDED_MEMPRY (1024L * 5)
