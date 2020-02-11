@@ -7,8 +7,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 嵌入式软件  C/C++ ARM STM32 物联网">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="【MQTT】MQTT调试助手mqttfx, 嵌入式软件  C/C++ ARM STM32 物联网">
+    <meta name="description" content="IAP 基本知识及使用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | wlyumu</title>
+    <title>【MQTT】MQTT调试助手mqttfx | wlyumu</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">【MQTT】MQTT调试助手mqttfx</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/IAP/">
+                                <span class="chip bg-color">IAP</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/IAP/" class="post-category">
+                                IAP
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -444,28 +457,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-09
+                    20120-02-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-01-15
+                    2020-02-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    801
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -481,15 +494,97 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h2 id="STM32在线升级（IAP）"><a href="#STM32在线升级（IAP）" class="headerlink" title="STM32在线升级（IAP）"></a>STM32在线升级（IAP）</h2><h3 id="IAP与ISP"><a href="#IAP与ISP" class="headerlink" title="IAP与ISP"></a>IAP与ISP</h3><ul>
+<li><p>ISP </p>
+<blockquote>
+<p>在系统可编程，指电路板上的空白器件可以编程写入最终用户代码， 而不需要从电路板上取下器件，已经编程的器件也可以用ISP方式擦除或再编程。这种方式需要将将BOOT管脚配置成上电从System Memory启动，System Memory中有一段BOOTLOADER来接收串口(对于STM32F407ZG来说，为USART1)来的数据，把它们烧写到FLASH中。<br>优势：不需要编程器就可以进行单片机的实验和开发，单片机芯片可以直接焊接到电路板上，调试结束即成成品，免去了调试时由于频繁地插入取出芯片对芯片和电路板带来的不便</p>
+</blockquote>
+</li>
+<li><p>IAP</p>
+<blockquote>
+<p>IAP是In Application Programming的首字母缩写，IAP是用户自己的程序在运行过程中对User Flash的部分区域进行烧写，目的是为了在产品发布后可以方便地通过预留的通信口对产品中的固件程序进行更新升级。<br>优势：从结构上将Flash存储器映射为两个存储体，当运行一个存储体上的用户程序时，可对另一个存储体重新编程，之后将程序从一个存储体转向另一个。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="IAP的执行流程："><a href="#IAP的执行流程：" class="headerlink" title="IAP的执行流程："></a>IAP的执行流程：</h2><ol>
+<li>bootload检测是否要升级程序并通过某种方式将固件bin文件传给要升级的设备（例如stm32）。</li>
+<li>当升级设备开始接收到数据时，需要开始缓存数据并累计接收数据的大小</li>
+<li>当数据接收完毕后即可开始将数据写入指定的内存地址并跳转执行</li>
+</ol>
+<h3 id="STM32内部FLASH分配"><a href="#STM32内部FLASH分配" class="headerlink" title="STM32内部FLASH分配"></a>STM32内部FLASH分配</h3><ol>
+<li><p>正常使用烧写器烧写程序，整个flash中只有一个中断向量和用户代码<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/flash_.jpg?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=flash_.jpg" alt="flash分配"></p>
+<ol start="2">
+<li>IAP程序中分为Bootload,用户程序两部分<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/IAP_Flash.jpg?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=IAP_Flash.jpg" alt="IAP flash分配"></li>
+</ol>
+</li>
+</ol>
+<h3 id="IAP程序实现"><a href="#IAP程序实现" class="headerlink" title="IAP程序实现"></a>IAP程序实现</h3><ol>
+<li><p>设置用户代码的的跳转地址</p>
+<pre class="line-numbers language-C"><code class="language-C">#define APP_START_ADDR       0x8010000      //应用程序起始地址(存放在FLASH)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>初始化时钟及串口外设</p>
+<pre class="line-numbers language-C"><code class="language-C">
+ bsp_Init();        /* 硬件初始化 */
+
+ PrintfLogo();    /* 打印例程名称和版本等信息 */
+ PrintfHelp();    /* 打印操作提示 */
+
+ FLASH_If_Init();
+
+ /* 如果用户区flash有写保护,在升级之前一定要解除写保护 */
+ if (FLASH_If_GetWriteProtectionStatus() == 0)   
+ {
+     /* 解保护 */
+     if(FLASH_If_DisableWriteProtection() == 1)
+     {
+         /* 解保护成功 */
+         printf("\n\r解保护成功\n\r");
+     }
+     else
+     {
+         /* 解保护失败 */
+         SerialPutString("解保护失败\r\n");
+     }
+ }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<p>3.检测程序是否升级和升级程序及程序跳转<br>在</p>
+<pre class="line-numbers language-C"><code class="language-C">
+if(KEY1_StateRead()==KEY_DOWN)                   //如果KEY1被单击
+    {
+
+      printf("开始更新 APP\r\n");
+      //更新FLASH代码      
+          /* 下载新的用户代码到flash里面  */
+            SerialDownload();
+            printf ( "单击 KEY2，执行 APP\r\n" );
+    }            
+    else if(KEY2_StateRead()==KEY_DOWN)          //如果KEY2被单击
+    {    
+            printf ( "执行 APP\r\n" );
+
+            HAL_Delay(1000);
+
+            JumpAddress = *(__IO uint32_t*) (APPLICATION_ADDRESS + 4);
+            /* 用户应用地址 */
+            Jump_To_Application = (pFunction) JumpAddress;
+            /* 初始化MSP */
+            __set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS);
+
+
+            Jump_To_Application();
+    }
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="用户程序"><a href="#用户程序" class="headerlink" title="用户程序"></a>用户程序</h3><p>1.设置用户程序跳转地址，这个需要设置两个地方，一个是keil里flash地址设置和中断偏移量的设置</p>
+<ul>
+<li>flash地址设置<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/IAP%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E7%BD%AE.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=IAP%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E7%BD%AE.png" alt="flash 地址设置"></li>
+<li>中断偏移量设置<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/IAP%E7%94%A8%E6%88%B7%E4%B8%AD%E6%96%AD%E5%81%8F%E7%A7%BB%E8%AE%BE%E7%BD%AE.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=IAP%E7%94%A8%E6%88%B7%E4%B8%AD%E6%96%AD%E5%81%8F%E7%A7%BB%E8%AE%BE%E7%BD%AE.png" alt="中断偏移设置"></li>
+</ul>
+<p>2.设置程序编译文件格式为bin</p>
+<blockquote>
+<p>生成bin文件的命令：<br> fromelf.exe –bin -o ./Flash/Obj/output.bin  ./Flash/Obj/output.axf</p>
+</blockquote>
+<p><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6bin.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6bin.png" alt="生成bin文件"></p>
 
             </div>
             <hr/>
@@ -505,7 +600,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn" rel="external nofollow noreferrer">wlyumu</a>
+                    <a href="http://wlyumu.cn" rel="external nofollow noreferrer">wl</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -515,7 +610,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn/posts/1243066710/">http://wlyumu.cn/posts/1243066710/</a>
+                    <a href="http://wlyumu.cn/posts/7/">http://wlyumu.cn/posts/7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -528,7 +623,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://wlyumu.cn" target="_blank">wlyumu</a>
+                    <a href="http://wlyumu.cn" target="_blank">wl</a>
                     !
                 </span>
             </div>
@@ -552,7 +647,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/IAP/">
+                                    <span class="chip bg-color">IAP</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -742,39 +841,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/5/">
+                <a href="/posts/4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【Emwin】显示字体">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【keil】 iot_socket组件">
                         
-                        <span class="card-title">【Emwin】显示字体</span>
+                        <span class="card-title">【keil】 iot_socket组件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            官方demo#include "GUI.h"
-
-#define RECOMMENDED_MEMPRY (1024L * 5)
-
-void MainTask(void)
-{
-    int xPos;
-    int yPos;
-    in
+                            iot_socket组件基本使用
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-09
+                            <i class="far fa-clock fa-fw icon-date"></i>20120-02-10
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Emwin/" class="post-category">
-                                    Emwin
+                            <a href="/categories/keil-%E7%BB%84%E4%BB%B6/" class="post-category">
+                                    keil 组件
                                 </a>
                             
                             
@@ -784,8 +875,8 @@ void MainTask(void)
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/GUI/">
-                        <span class="chip bg-color">GUI</span>
+                    <a href="/tags/RTX5/">
+                        <span class="chip bg-color">RTX5</span>
                     </a>
                     
                 </div>
@@ -796,37 +887,48 @@ void MainTask(void)
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/1243066710/">
+                <a href="/posts/3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【MQTT】MQTT调试助手mqttfx">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">【MQTT】MQTT调试助手mqttfx</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            MQTT调试助手mqttfx
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-09
+                                <i class="far fa-clock fa-fw icon-date"></i>20120-02-08
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            wlyumu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MQTT/" class="post-category">
+                                    MQTT
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MQTT/">
+                        <span class="chip bg-color">MQTT</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
