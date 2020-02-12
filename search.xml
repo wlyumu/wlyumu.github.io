@@ -108,6 +108,32 @@ void iot_thread(void)
       </tags>
   </entry>
   <entry>
+    <title>【MQTT】MQTT调试助手mqttfx</title>
+    <url>/posts/3/</url>
+    <content><![CDATA[<h2 id="1-Mqttfx"><a href="#1-Mqttfx" class="headerlink" title="1. Mqttfx"></a>1. Mqttfx</h2><p>MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工具。支持通过Topic订阅和发布消息，用来前期和物理云平台调试非常方便。</p>
+<h2 id="2-Mqttfx使用"><a href="#2-Mqttfx使用" class="headerlink" title="2. Mqttfx使用"></a>2. Mqttfx使用</h2><ol>
+<li><p>MQTT基本配置<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/MQTT/MQTT.fx.jpg?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=MQTT.fx.jpg" alt="MQTT基本配置"></p>
+</li>
+<li><p>MQTT Username及PassWord<br>这个是根据MQTT服务器是否需要UserName和PassWord来配置，有则根据协议规则来配置，没有可以不配。<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/MQTT/MQTT.fx_UserName_.png?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=MQTT.fx_UserName_.png" alt="MQTT Username及PassWord"></p>
+</li>
+<li><p>MQTT 连接<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/MQTT/MQTT.fxConnect.png?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=MQTT.fxConnect.png" alt="MQTT 连接"></p>
+</li>
+<li><p>MQTT 发布<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/MQTT/MQTT_Pulish.png?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=MQTT_Pulish.png" alt="MQTT 发布"></p>
+</li>
+<li><p>MQTT 订阅<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/MQTT/MQTT_Subscribe.png?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=MQTT_Subscribe.png" alt="MQTT 订阅"></p>
+</li>
+<li><p>MQTT Debug<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/MQTT/MQTT_Debug.png?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=MQTT_Debug.png" alt="MQTT Debug"></p>
+</li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
+      <categories>
+        <category>MQTT</category>
+      </categories>
+      <tags>
+        <tag>MQTT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【IAP】STM32 IAP在线升级</title>
     <url>/posts/7/</url>
     <content><![CDATA[<h2 id="STM32在线升级（IAP）"><a href="#STM32在线升级（IAP）" class="headerlink" title="STM32在线升级（IAP）"></a>STM32在线升级（IAP）</h2><h3 id="IAP与ISP"><a href="#IAP与ISP" class="headerlink" title="IAP与ISP"></a>IAP与ISP</h3><ul>
@@ -128,9 +154,9 @@ void iot_thread(void)
 <li>当数据接收完毕后即可开始将数据写入指定的内存地址并跳转执行</li>
 </ol>
 <h3 id="STM32内部FLASH分配"><a href="#STM32内部FLASH分配" class="headerlink" title="STM32内部FLASH分配"></a>STM32内部FLASH分配</h3><ol>
-<li><p>正常使用烧写器烧写程序，整个flash中只有一个中断向量和用户代码<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/flash_.jpg?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=flash_.jpg" alt="flash分配"></p>
+<li><p>正常使用烧写器烧写程序，整个flash中只有一个中断向量和用户代码<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/IAP/flash_.jpg?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=flash_.jpg" alt="flash分配"></p>
 <ol start="2">
-<li>IAP程序中分为Bootload,用户程序两部分<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/IAP_Flash.jpg?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=IAP_Flash.jpg" alt="IAP flash分配"></li>
+<li>IAP程序中分为Bootload,用户程序两部分<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/IAP/IAP_Flash.jpg?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=IAP_Flash.jpg" alt="IAP flash分配"></li>
 </ol>
 </li>
 </ol>
@@ -193,46 +219,20 @@ if(KEY1_StateRead()==KEY_DOWN)                   //如果KEY1被单击
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="用户程序"><a href="#用户程序" class="headerlink" title="用户程序"></a>用户程序</h3><p>1.设置用户程序跳转地址，这个需要设置两个地方，一个是keil里flash地址设置和中断偏移量的设置</p>
 <ul>
-<li>flash地址设置<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/IAP%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E7%BD%AE.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=IAP%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E7%BD%AE.png" alt="flash 地址设置"></li>
-<li>中断偏移量设置<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/IAP%E7%94%A8%E6%88%B7%E4%B8%AD%E6%96%AD%E5%81%8F%E7%A7%BB%E8%AE%BE%E7%BD%AE.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=IAP%E7%94%A8%E6%88%B7%E4%B8%AD%E6%96%AD%E5%81%8F%E7%A7%BB%E8%AE%BE%E7%BD%AE.png" alt="中断偏移设置"></li>
+<li>flash地址设置<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/IAP/IAP%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E7%BD%AE.png?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=IAP%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E7%BD%AE.png" alt="flash 地址设置"></li>
+<li>中断偏移量设置<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/IAP/IAP%E7%94%A8%E6%88%B7%E4%B8%AD%E6%96%AD%E5%81%8F%E7%A7%BB%E8%AE%BE%E7%BD%AE.png?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=IAP%E7%94%A8%E6%88%B7%E4%B8%AD%E6%96%AD%E5%81%8F%E7%A7%BB%E8%AE%BE%E7%BD%AE.png" alt="中断偏移设置"></li>
 </ul>
 <p>2.设置程序编译文件格式为bin</p>
 <blockquote>
 <p>生成bin文件的命令：<br> fromelf.exe –bin -o ./Flash/Obj/output.bin  ./Flash/Obj/output.axf</p>
 </blockquote>
-<p><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/IAP/%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6bin.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6bin.png" alt="生成bin文件"></p>
+<p><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/IAP/%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6bin.png?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6bin.png" alt="生成bin文件"></p>
 ]]></content>
       <categories>
         <category>IAP</category>
       </categories>
       <tags>
         <tag>IAP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【MQTT】MQTT调试助手mqttfx</title>
-    <url>/posts/3/</url>
-    <content><![CDATA[<h2 id="1-Mqttfx"><a href="#1-Mqttfx" class="headerlink" title="1. Mqttfx"></a>1. Mqttfx</h2><p>MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工具。支持通过Topic订阅和发布消息，用来前期和物理云平台调试非常方便。</p>
-<h2 id="2-Mqttfx使用"><a href="#2-Mqttfx使用" class="headerlink" title="2. Mqttfx使用"></a>2. Mqttfx使用</h2><ol>
-<li><p>MQTT基本配置<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT.fx.jpg?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT.fx.jpg" alt="MQTT基本配置"></p>
-</li>
-<li><p>MQTT Username及PassWord<br>这个是根据MQTT服务器是否需要UserName和PassWord来配置，有则根据协议规则来配置，没有可以不配。<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT.fx_UserName_.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT.fx_UserName_.png" alt="MQTT Username及PassWord"></p>
-</li>
-<li><p>MQTT 连接<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT.fxConnect.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT.fxConnect.png" alt="MQTT 连接"></p>
-</li>
-<li><p>MQTT 发布<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT_Pulish.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT_Pulish.png" alt="MQTT 发布"></p>
-</li>
-<li><p>MQTT 订阅<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT_Subscribe.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT_Subscribe.png" alt="MQTT 订阅"></p>
-</li>
-<li><p>MQTT Debug<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/MQTT/MQTT_Debug.png?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=MQTT_Debug.png" alt="MQTT Debug"></p>
-</li>
-</ol>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
-      <categories>
-        <category>MQTT</category>
-      </categories>
-      <tags>
-        <tag>MQTT</tag>
       </tags>
   </entry>
   <entry>
@@ -291,7 +291,7 @@ Returns: 状态代码，指示功能的执行状态<span aria-hidden="true" clas
 <h3 id="7-获取事件对象的名称"><a href="#7-获取事件对象的名称" class="headerlink" title="7. 获取事件对象的名称"></a>7. 获取事件对象的名称</h3><pre class="line-numbers language-C"><code class="language-C">ef_id  : 事件对象
 Returns: 事件对象的名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="事件标志组使用"><a href="#事件标志组使用" class="headerlink" title="事件标志组使用"></a>事件标志组使用</h2><ol>
-<li>两个线程如何使用事件标志组通信示意图<br><img src="https://static.cowtransfer.com/cloud-21d0557c-1718-403d-9fc5-422e4abc4590/pic/RTX/%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG?onett=fdfa188413a4ebdb1ae5cee1ab2742cc&attname=%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG" alt="logo"></li>
+<li>两个线程如何使用事件标志组通信示意图<br><img src="https://static.cowtransfer.com/21d0557c-1718-403d-9fc5-422e4abc4590/1d454dc3-6fce-49e8-9e62-cdd7fef77e27/pic/RTX/%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG?onett=38da09791c78caf4e64e1b1bedf7a0db&attname=%E4%B8%A4%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%A0%87%E5%BF%97%E7%BB%84%E9%80%9A%E4%BF%A1.PNG" alt="logo"></li>
 </ol>
 <h3 id="1-事件标志组使用示例"><a href="#1-事件标志组使用示例" class="headerlink" title="1. 事件标志组使用示例"></a>1. 事件标志组使用示例</h3><pre class="line-numbers language-C"><code class="language-C"> #include "cmsis_os2.h"                      
 
