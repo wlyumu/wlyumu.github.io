@@ -7,8 +7,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【Emwin】日历控件的使用, 嵌入式软件  C/C++ ARM STM32 物联网">
-    <meta name="description" content="日历控件的使用">
+    <meta name="keywords" content="【Emwin】自定义按键, 嵌入式软件  C/C++ ARM STM32 物联网">
+    <meta name="description" content="自定义按键">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Emwin】日历控件的使用 | wlyumu</title>
+    <title>【Emwin】自定义按键 | wlyumu</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【Emwin】日历控件的使用</h1>
+                    <h1 class="description center-align post-title">【Emwin】自定义按键</h1>
                 </div>
             </div>
         </div>
@@ -457,28 +457,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    20120-02-20
+                    20120-02-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-25
+                    2020-02-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    368
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -494,207 +494,65 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="日历控件"><a href="#日历控件" class="headerlink" title="日历控件"></a>日历控件</h2><p>  日历对话框可用于选择或设置日期。</p>
-<ul>
-<li>日历控件可以支持的通知消息</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">消息</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">CALENDAR_NOTIFICATION_MONTH_CLICKED</td>
-<td align="center">月份/年份文本已被单击</td>
-</tr>
-<tr>
-<td align="center">CALENDAR_NOTIFICATION_MONTH_RELEASED</td>
-<td align="center">月份/年份文本已被释放</td>
-</tr>
-<tr>
-<td align="center">WM_NOTIFICATION_CLICKED</td>
-<td align="center">小部件被点击</td>
-</tr>
-<tr>
-<td align="center">WM_NOTIFICATION_RELEASED</td>
-<td align="center">小部件被释放</td>
-</tr>
-<tr>
-<td align="center">WM_NOTIFICATION_SCROLL_CHANGED</td>
-<td align="center">其中一个滚动按钮被按下</td>
-</tr>
-<tr>
-<td align="center">WM_NOTIFICATION_SEL_CHANGED</td>
-<td align="center">控件发生改变</td>
-</tr>
-</tbody></table>
-<ul>
-<li>日历控件支持的键盘反应</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">按键</th>
-<th align="center">反应</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">GUI_KEY_PGUP</td>
-<td align="center">选择移回一个月前</td>
-</tr>
-<tr>
-<td align="center">GUI_KEY_PGDOWN</td>
-<td align="center">选择移回一个月后</td>
-</tr>
-<tr>
-<td align="center">GUI_KEY_LEFT</td>
-<td align="center">选择移动到左边</td>
-</tr>
-<tr>
-<td align="center">GUI_KEY_RIGHT</td>
-<td align="center">选择移动到右边</td>
-</tr>
-<tr>
-<td align="center">GUI_KEY_UP</td>
-<td align="center">选择向上移动一行</td>
-</tr>
-<tr>
-<td align="center">GUI_KEY_DOWN</td>
-<td align="center">选择向下移动一行</td>
-</tr>
-</tbody></table>
-<h2 id="日历控件的相关函数"><a href="#日历控件的相关函数" class="headerlink" title="日历控件的相关函数"></a>日历控件的相关函数</h2><ul>
-<li>创建一个日历控件</li>
-</ul>
-<pre class="line-numbers language-C"><code class="language-C">   原型：WM_HWIN CALENDAR_Create(WM_HWIN hParent,
-                                 int xPos,
-                                 int yPos,
-                                 unsigned Year,
-                                 unsigned Month,
-                                 unsigned Day,
-                                 unsigned FirstDayOfWeek,
-                                 int Id,
-                                 int Flags); 
-   参数：hParent   接收NOTIFICATION 消息的父窗口的句柄
-         xPos      客户端坐标中对话框的X位置(以像素为单位)
-         yPos      客户端坐标中对话框的Y位置(以像素为单位)
-         Year      当前的年数 (1582-9999)
-         Month     当前的月份 (1-12)
-         Day       当前的天数 (1-31)
-         FirstDayOfWeek   日历控件从哪一个工作日开始(0-6 0=SA, 1=SO, … , 6=FR)
-         Id        创建日历控件所使用的ID
-         Flags     窗口小部件的附加标志(例如 WM_CF_SHOW  WM_CF_TRANS)
+                <h2 id="自定义按键"><a href="#自定义按键" class="headerlink" title="自定义按键"></a>自定义按键</h2><blockquote>
+<p>Emwin中按键控件的本质也是窗口，一般有系统默认的回调函数，只是被封装了，用户看不到，不像我们使用窗口或者框架窗口的时候还需要专门的设置回调函数。当你想修改按键控件的一些外观时，这就需要我们使用WM_SetCallback设置按键控件的回调函数，并且在回调函数做出相应的修改。</p>
+</blockquote>
+<h3 id="自定义创建步骤"><a href="#自定义创建步骤" class="headerlink" title="自定义创建步骤"></a>自定义创建步骤</h3><ol>
+<li>创建按键控件</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">BUTTON_Handle BUTTON_CreateEx( int x0,         /*控件最左侧的像素 （在父坐标中）*/
+                               int y0,         /*控件最顶端的像素 （在父坐标中）*/
+                               int  xSize,     /*控件的水平尺寸 （以像素为单位）*/
+                               int ySize,      /*控件的垂直尺寸 （以像素为单位）*/
+                               WM_HWIN hParent,/*按钮控件大的父窗口*/
+                               int WinFlags,   /*窗口创建标记*/
+                               int  ExFlags,   /*预留*/
+                               int Id);        /*窗口ID*/
 
-  返回值：成功对话框的句柄，否则为0
+hWin = BUTTON_CreateEx(0,0, 100, 100, 0, WM_CF_SHOW, 0 , 0, GUI_ID_BUTTON0);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>设置按键回调函数</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">WM_SetCallback(hWin, _cbButtonback);
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="3">
+<li>重写按键的回调函数</li>
+</ol>
+<pre class="line-numbers language-C"><code class="language-C">/* 重写按键的回调函数 */
 
-  注意：使用时一定要注意Year、Month、Day这个三个参数一定要在范围之内，要不然就会日历控件创建失败<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>设置用于新日历对话框的默认背景颜色</li>
-</ul>
-<pre class="line-numbers language-C"><code class="language-C">  原型： void CALENDAR_SetDefaultBkColor(unsigned Index,GUI_COLOR Color);
-
-  参数：Index 设置日历控件部分位置的背景颜色，具体设置那一部分需要参考下面的
-              宏定义。
-              CALENDAR_CI_WEEKEND ： 周末使用的背景色
-              CALENDAR_CI_WEEKDAY ： 用于工作日的背景色
-              CALENDAR_CI_SEL     ： 用于选择的背景颜色
-              CALENDAR_CI_HEADER  ： 标题区域使用的背景颜色
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>设置用于标记日期的文本</li>
-</ul>
-<pre class="line-numbers language-C"><code class="language-C">  原型： void CALENDAR_SetDefaultDays(const char ** apDays);
-  参数： apDays : 指向包含字符串的7个字符串指针的数组的指针要使用。
-
-  注意：数组的第一个字符串应该指向星期六的缩写，第二个字符串指向星期天。数组 需要至少有7个字符串。如果传递给函数的字符串太少，则emWin的行为将变得未定义
-
-  例如：
-  const char* apDays[] =
+static void _cbButtonback(WM_MESSAGE* pMsg)
 {
-    "六.",
-    "日.",
-    "一.",
-    "二.",
-    "三.",
-    "四.",
-    "五.",
-    "六.",
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>设置要用于当前月/年的文本</li>
-</ul>
-<pre class="line-numbers language-C"><code class="language-C">  原型：void CALENDAR_SetDefaultMonths(const char ** apMonths);
-  参数：apMonth : 指针指向一个包含12个字符串指针的数组要使用的字符串。 
+    WM_HWIN hWin;
+    hWin = pMsg->hWin;
 
-  注意：数组的第一个字符串应该指向“January”的文本，第二个字符串应该指向文本
-  例如“二月”等等。数组需要至少有12个字符串。如果太少的话传递给函数的字符串emWin的行为没有定义
-
-  例如：
-  const char* apMonths[] =
-{
-    "1月",
-    "2月",
-    "3月",
-    "4月",
-    "5月",
-    "6月",
-    "7月",
-    "8月",
-    "9月",
-    "10月",
-    "11月",
-    "12月",
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>设置对话框使用的大小</li>
-</ul>
-<pre class="line-numbers language-C"><code class="language-C">  原型：void CALENDAR_SetDefaultSize(unsigned Index, unsigned Size);
-  参数：Index   要设置日历控件的位置，具体位置参考一下宏
-                CALENDAR_SI_HEADER：设置标题区域的ysize
-                CALENDAR_SI_CELL_X: 设置日历控件显示日期的单元格Xsize
-                CALENDAR_SI_CELL_Y: 设置日历控件显示日期的单元格Ysize
-
-  注意：完整对话框中x的大小可以计算如下:xSizeDialog = 7×CellSizeX
-        完整对话框中y的大小可以计算如下:ySizeDialog = 7×CellSize+ HeaderSizeY          <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>设置用于绘制日历控件的字体</li>
-</ul>
-<pre class="line-numbers language-C"><code class="language-C">  原型：void CALENDAR_SetDefaultFont( unsigned Index,
-                                      const GUI_FONT *  pFont);
-  参数：Index : 用于那部分显示， 具体根据一下宏定以
-                CALENDAR_FI_CONTENT ：用于标记和编号的字体
-                CALENDAR_FI_HEADER  ：用于标题月/年使用的字体
-        pFont : 要使用的字体
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="日历控件的使用"><a href="#日历控件的使用" class="headerlink" title="日历控件的使用"></a>日历控件的使用</h2><pre class="line-numbers language-C"><code class="language-C">  /*获取当前的年月日*/
-  _Calendar_Date.Year  = (unsigned int)p->tm_year;
-    _Calendar_Date.Month = (unsigned int)p->tm_mon;
-    _Calendar_Date.Day   = (unsigned int)p->tm_mday;
-
-    /*日历控件初始化 */
-    CALENDAR_SetDefaultDays(apDays);
-    CALENDAR_SetDefaultMonths(apMonths);
-
-    CALENDAR_SetDefaultSize(CALENDAR_SI_HEADER, 35);
-    CALENDAR_SetDefaultSize(CALENDAR_SI_CELL_X, 40);
-    CALENDAR_SetDefaultSize(CALENDAR_SI_CELL_Y, 28);
-
-    CALENDAR_SetDefaultColor(CALENDAR_CI_WEEKDAY, GUI_BLACK);
-    CALENDAR_SetDefaultColor(CALENDAR_CI_WEEKEND, GUI_GRAY);
-    CALENDAR_SetDefaultColor(CALENDAR_CI_LABEL, GUI_LIGHTBLUE);
-
-    CALENDAR_SetDefaultFont(CALENDAR_FI_CONTENT, &Font);
-    CALENDAR_SetDefaultFont(CALENDAR_FI_HEADER, &Font);
-
-    hWinD = CALENDAR_Create(hWin, 450, 22, _Calendar_Date.Year + 1900, _Calendar_Date.Month, _Calendar_Date.Day, 2, GUI_ID_CALENDAR0, WM_CF_SHOW);
-    if (hWinD == 0)
+    switch (pMsg->MsgId)
     {
-        GUI_Log("error");
+        /*按键控件重绘*/
+    case WM_PAINT:
+         /*按键按下时, 绘制按键的外观*/
+        if (BUTTON_IsPressed(hWin)) 
+        {
+            GUI_SetColor(GUI_DARKGRAY);
+            /*绘制抗锯齿填充的圆*/
+            GUI_AA_FillCircle(100 * MAG, 0, 72 * MAG);
+            GUI_SetBkColor(GUI_DARKGRAY);
+            GUI_SetColor(GUI_WHITE);
+            GUI_DrawBitmap(&bmReturn, 40, 5);
+        }
+        else
+        {
+              /*按键未按下时, 绘制按键的外观*/
+            GUI_SetColor(GUI_STCOLOR_LIGHTBLUE);
+            GUI_AA_FillCircle(100 * MAG, 0, 72 * MAG);
+            GUI_SetBkColor(GUI_STCOLOR_LIGHTBLUE);
+            GUI_SetColor(GUI_WHITE);
+            GUI_DrawBitmap(&bmReturn, 40, 5);
+        }
+        break;
+    default:
+        BUTTON_Callback(pMsg);/* 按键默认的事件处理函数 */
     }
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -720,7 +578,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn/posts/0000000a/">http://wlyumu.cn/posts/0000000a/</a>
+                    <a href="http://wlyumu.cn/posts/0000000b/">http://wlyumu.cn/posts/0000000b/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -947,29 +805,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/00000009/">
+                <a href="/posts/0000000b/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【Emwin】xbf字体制作及使用方法">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【Emwin】自定义按键">
                         
-                        <span class="card-title">【Emwin】xbf字体制作及使用方法</span>
+                        <span class="card-title">【Emwin】自定义按键</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            xbf字体制作和使用方法
+                            自定义按键
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>20120-02-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>20120-02-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -982,6 +841,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1000,31 +860,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/4/">
+                <a href="/posts/00000009/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【keil】 iot_socket组件">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【Emwin】xbf字体制作及使用方法">
                         
-                        <span class="card-title">【keil】 iot_socket组件</span>
+                        <span class="card-title">【Emwin】xbf字体制作及使用方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            iot_socket组件基本使用
+                            xbf字体制作和使用方法
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>20120-02-10
+                                <i class="far fa-clock fa-fw icon-date"></i>20120-02-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/keil-%E7%BB%84%E4%BB%B6/" class="post-category">
-                                    keil 组件
+                            <a href="/categories/Emwin/" class="post-category">
+                                    Emwin
                                 </a>
                             
                             
@@ -1034,8 +894,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/RTX5/">
-                        <span class="chip bg-color">RTX5</span>
+                    <a href="/tags/Emwin/">
+                        <span class="chip bg-color">Emwin</span>
                     </a>
                     
                 </div>
