@@ -363,21 +363,21 @@
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/">10</a></span>
+    <span class="count"><a href="/">12</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories">6</a></span>
+    <span class="count"><a href="/categories">8</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">5</a></span>
+    <span class="count"><a href="/tags">7</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -393,21 +393,21 @@
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/">10</a></span>
+    <span class="count"><a href="/">12</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories">6</a></span>
+    <span class="count"><a href="/categories">8</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">5</a></span>
+    <span class="count"><a href="/tags">7</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -541,7 +541,7 @@
         },
         xAxis: {
             type: 'category',
-            data: ["2019-02","2019-03","2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02"]
+            data: ["2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06"]
         },
         yAxis: {
             type: 'value',
@@ -551,7 +551,7 @@
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,1,0,2,0],
+                data: [0,0,0,0,0,1,0,2,0,0,0,0,0],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -593,7 +593,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"Emwin","value":4},{"name":"嵌入式系统","value":1},{"name":"IAP","value":1},{"name":"Cmake","value":1},{"name":"keil 组件","value":1},{"name":"MQTT","value":1}],
+                data: [{"name":"Cmake","value":1},{"name":"Emwin","value":4},{"name":"MQTT","value":1},{"name":"IAP","value":1},{"name":"keil 组件","value":1},{"name":"FPGA","value":1},{"name":"嵌入式系统","value":1},{"name":"uC/modbus","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -617,7 +617,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["Emwin","RTX5","IAP","自动化管理工程","MQTT"]
+                data: ["Emwin","RTX5","自动化管理工程","MQTT","IAP","FPGA","ucos"]
             }
         ],
         yAxis: [
@@ -630,7 +630,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [4,2,1,1,1],
+                data: [4,2,1,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -798,14 +798,20 @@
         <div class="tag-chips center-align">
             
             
+            <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B/">
+                <span class="chip center-align waves-effect waves-light chip-default">自动化管理工程</span>
+            </a>
+            
+            
+            
             <a href="/tags/Emwin/">
                 <span class="chip center-align waves-effect waves-light chip-default">Emwin</span>
             </a>
             
             
             
-            <a href="/tags/RTX5/">
-                <span class="chip center-align waves-effect waves-light chip-default">RTX5</span>
+            <a href="/tags/MQTT/">
+                <span class="chip center-align waves-effect waves-light chip-default">MQTT</span>
             </a>
             
             
@@ -816,14 +822,20 @@
             
             
             
-            <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B/">
-                <span class="chip center-align waves-effect waves-light chip-default">自动化管理工程</span>
+            <a href="/tags/RTX5/">
+                <span class="chip center-align waves-effect waves-light chip-default">RTX5</span>
             </a>
             
             
             
-            <a href="/tags/MQTT/">
-                <span class="chip center-align waves-effect waves-light chip-default">MQTT</span>
+            <a href="/tags/FPGA/">
+                <span class="chip center-align waves-effect waves-light chip-default">FPGA</span>
+            </a>
+            
+            
+            
+            <a href="/tags/ucos/">
+                <span class="chip center-align waves-effect waves-light chip-default">ucos</span>
             </a>
             
             
@@ -894,7 +906,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.6k</span>&nbsp;字
+                class="white-color">6.5k</span>&nbsp;字
             
             
             

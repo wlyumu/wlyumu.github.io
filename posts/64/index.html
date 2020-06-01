@@ -7,8 +7,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【Emwin】自定义按键, 嵌入式软件  C/C++ ARM STM32 物联网">
-    <meta name="description" content="自定义按键">
+    <meta name="keywords" content="【FPGA】---uart回环实验, 嵌入式软件  C/C++ ARM STM32 物联网">
+    <meta name="description" content="quartus软件使用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Emwin】自定义按键 | wlyumu</title>
+    <title>【FPGA】---uart回环实验 | wlyumu</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【Emwin】自定义按键</h1>
+                    <h1 class="description center-align post-title">【FPGA】---uart回环实验</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Emwin/">
-                                <span class="chip bg-color">Emwin</span>
+                            <a href="/tags/FPGA/">
+                                <span class="chip bg-color">FPGA</span>
                             </a>
                         
                     </div>
@@ -444,8 +444,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Emwin/" class="post-category">
-                                Emwin
+                            <a href="/categories/FPGA/" class="post-category">
+                                FPGA
                             </a>
                         
                     </div>
@@ -457,28 +457,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    20120-02-27
+                    20120-06-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-27
+                    2020-06-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    368
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -494,66 +494,267 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="自定义按键"><a href="#自定义按键" class="headerlink" title="自定义按键"></a>自定义按键</h2><blockquote>
-<p>Emwin中按键控件的本质也是窗口，一般有系统默认的回调函数，只是被封装了，用户看不到，不像我们使用窗口或者框架窗口的时候还需要专门的设置回调函数。当你想修改按键控件的一些外观时，这就需要我们使用WM_SetCallback设置按键控件的回调函数，并且在回调函数做出相应的修改。</p>
+                <h1 id="串口接收数据回传"><a href="#串口接收数据回传" class="headerlink" title="串口接收数据回传"></a>串口接收数据回传</h1><h2 id="程序整体框架"><a href="#程序整体框架" class="headerlink" title="程序整体框架"></a>程序整体框架</h2><ul>
+<li>uart_top 顶层模块</li>
+<li>串口接收模块</li>
+<li>串口发送模块  </li>
+</ul>
+<h3 id="UART-串口接收数据模块"><a href="#UART-串口接收数据模块" class="headerlink" title="UART 串口接收数据模块"></a>UART 串口接收数据模块</h3><ul>
+<li>uart 串口接收模块端口<blockquote>
+<p>input  clk<br>input  rst_n<br>input  uart_rx_data<br>output [7 : 0] uart_data<br>output         uart_done</p>
 </blockquote>
-<h3 id="自定义创建步骤"><a href="#自定义创建步骤" class="headerlink" title="自定义创建步骤"></a>自定义创建步骤</h3><ol>
-<li>创建按键控件</li>
+</li>
+</ul>
+<ul>
+<li>uart 串口接收模块编写流程</li>
+</ul>
+<ol>
+<li><p>接收数据时，当数据线被拉低时，即代表开始接收数据(下降沿检测)\</p>
+<pre><code>主要是对 uart_rx_data端口在连续两个周期缓存两次，主要写法如下：
+
+assign  start_flag = uart_rx_d1 &amp; (~uart_rx_d0);
+/*捕获接收信号 ---- 下降沿*/
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin
+ uart_rx_d0 &lt;= 1&#39;b0;
+ uart_rx_d1 &lt;= 1&#39;b0;
+ end
+ else begin
+    uart_rx_d0 &lt;= uart_rx_data;
+    uart_rx_d1 &lt;= uart_rx_d0;    
+ end
+end</code></pre></li>
+<li><p>当进入接收状态时，即在start_flag == 1时将rx_flag置一，当接收数据<br>个数为9时及cnt_clk计数器计数值处于BPS_CNT/2时，代表该串口接收数据结束.</p>
+<pre><code>/*开始信号到来,进入接收流程*/
+always @(posedge clk or negedge rst_n)begin
+if(!rst_n)
+  rx_flag &lt;= 1&#39;b0;
+else begin
+  if(start_flag)
+    rx_flag &lt;= 1&#39;b1;
+   else if((rx_cnt == 4&#39;d9) &amp;&amp; (clk_cnt == BPS_CNT/2)) /*接收9个bit数据*/
+    rx_flag &lt;= 1&#39;b0;
+   else
+    rx_flag &lt;= rx_flag;
+end
+end</code></pre></li>
+<li><p>接收数据计数器和时钟计数器,主要是根据rx_flag接收信号对clk_cnt<br>计数，当clk_cnt &lt; BPS_CNT(接收一个bit所需要的时间),clk_cnt ++;<br>当clk_cnt &gt;= BPS_CNT时，认为一个bit已经接收完毕，同时clk_cnt清零。</p>
+<pre><code>always @(posedge clk or negedge rst_n)begin
+  if(!rst_n) begin
+   clk_cnt &lt;= 16&#39;d0;
+   rx_cnt  &lt;= 4&#39;d0 ;
+  end 
+  else if(rx_flag)begin
+     if(clk_cnt &lt; BPS_CNT - 1)begin
+        clk_cnt &lt;= clk_cnt + 1&#39;d1;
+        rx_cnt  &lt;= rx_cnt;
+     end
+     else begin
+       clk_cnt &lt;= 16&#39;d0;
+       rx_cnt &lt;= rx_cnt + 1&#39;d1;
+     end
+  end
+  else begin
+     clk_cnt &lt;= 16&#39;d0;
+     rx_cnt  &lt;= 4&#39;d0;
+  end
+end</code></pre></li>
+<li><p>将接收到的数据缓存起来,当处于接收状态(rx_flag=1)并clk_cnt == BPS_CNT / 2时，此时数据处于较稳定状态，根据rx_cnt来对相应数据进行存储。</p>
+<pre><code>/*将接收的数据寄存起来*/
+always @(posedge clk or negedge rst_n)begin
+if(!rst_n)
+rxdata &lt;= 8&#39;d0;
+else if(rx_flag)begin
+   if(clk_cnt == BPS_CNT / 2)begin
+      /*根据数据计数器，将接收到的数据存入相应的地方*/
+      case(rx_cnt)
+      4&#39;d1: rxdata[0] &lt;= uart_rx_d1;
+      4&#39;d2: rxdata[1] &lt;= uart_rx_d1;
+      4&#39;d3: rxdata[2] &lt;= uart_rx_d1;
+      4&#39;d4: rxdata[3] &lt;= uart_rx_d1;
+      4&#39;d5: rxdata[4] &lt;= uart_rx_d1;
+      4&#39;d6: rxdata[5] &lt;= uart_rx_d1;
+      4&#39;d7: rxdata[6] &lt;= uart_rx_d1;
+     4&#39;d8: rxdata[7] &lt;= uart_rx_d1;
+      default: ;
+      endcase
+
+   end
+
+   else 
+   rxdata &lt;= rxdata;
+ end
+ else 
+   rxdata &lt;= 8&#39;d0;
+end</code></pre></li>
+<li><p>将缓存的数据发送到串口发送端,当rx_cnt=9时，即一个帧数据接收完毕，此时将接收<br>完一帧数据标志rx_done置一，同时将接收的数据缓存到uart_data,发送给串口发送模块。</p>
+<pre><code>/*置接收完成标志，并将数据缓存出去*/
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n )begin
+ uart_data &lt;= 8&#39;d0;
+ uart_rx_done &lt;= 1&#39;b0;
+ end
+ else if(rx_cnt == 4&#39;d9)begin
+    uart_data &lt;= rxdata;
+    uart_rx_done &lt;= 1&#39;b1;
+ end
+ else begin
+    uart_data &lt;= 8&#39;d0;
+    uart_rx_done &lt;= 1&#39;b0;
+ end 
+end</code></pre></li>
 </ol>
-<pre class="line-numbers language-C"><code class="language-C">BUTTON_Handle BUTTON_CreateEx( int x0,         /*控件最左侧的像素 （在父坐标中）*/
-                               int y0,         /*控件最顶端的像素 （在父坐标中）*/
-                               int  xSize,     /*控件的水平尺寸 （以像素为单位）*/
-                               int ySize,      /*控件的垂直尺寸 （以像素为单位）*/
-                               WM_HWIN hParent,/*按钮控件大的父窗口*/
-                               int WinFlags,   /*窗口创建标记*/
-                               int  ExFlags,   /*预留*/
-                               int Id);        /*窗口ID*/
-
-hWin = BUTTON_CreateEx(0,0, 100, 100, 0, WM_CF_SHOW, 0 , 0, GUI_ID_BUTTON0);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="2">
-<li>设置按键回调函数</li>
+<h3 id="串口发送数据模块"><a href="#串口发送数据模块" class="headerlink" title="串口发送数据模块"></a>串口发送数据模块</h3><ul>
+<li><p>uart 串口tx 端口</p>
+<blockquote>
+<p>input clk<br>input rst_n<br>input         uart_tx_flag<br>input [7: 0]  uart_data<br>output        uart_tx_data</p>
+</blockquote>
+</li>
+<li><p>UART 串口发送数据流程</p>
+</li>
+</ul>
+<ol>
+<li><p>捕获 uart_tx_flag接收完成信号，通过对uart_tx_flag缓存两个周期，检测上升沿信号,将发送使能信号是否置一。</p>
+<pre><code>reg uart_tx_d0;
+reg uart_tx_d1;                      
+wire   en_flag;
+assign en_flag = uart_tx_d0 &amp; (~uart_tx_d1);
+/*接收到串口发送信号， 进入发送过程， 上升沿检测*/
+always @(posedge clk or negedge rst_n) begin
+if(!rst_n)begin
+uart_tx_d0 &lt;= 1&#39;b0;
+uart_tx_d1 &lt;= 1&#39;b0;
+end
+else begin
+  uart_tx_d0 &lt;= uart_tx_flag;
+  uart_tx_d1 &lt;= uart_tx_d0;
+end
+end</code></pre></li>
+<li><p>当发送使能信号en_flag = 1时，tx_data缓存串口接收发送过来的数据uart_data，当发送的9个bit后，即代表串口发送完一帧数据。</p>
+<pre><code>/*进入发送过程, 缓存串口接收端口发送的数据*/
+always @(posedge clk or negedge rst_n) begin
+if(!rst_n)begin
+  tx_flag &lt;= 1&#39;d0;
+  tx_data &lt;= 8&#39;d0;
+end
+else begin
+  if(en_flag)begin
+      tx_flag &lt;= 1&#39;b1;
+      tx_data &lt;= uart_data;
+   end
+   else if(tx_cnt == 4&#39;d9 &amp;&amp; clk_cnt == (BSP_CNT / 2)  )begin
+   tx_flag &lt;= 1&#39;b0;
+  tx_data &lt;= 8&#39;d0;
+   end
+   else begin
+   tx_data &lt;= tx_data;
+    tx_flag &lt;= tx_flag;
+  end
+end   
+end</code></pre><ol start="3">
+<li>串口发送时钟计数器和发送数据计数器， 在发送状态中，当clk_cnt &lt; BPS_CNT -1,<br>clk_cnt ++ , 当clk_cnt &gt;= BPS_CNT - 1时,即串口成功发送一个bit。</li>
 </ol>
-<pre class="line-numbers language-C"><code class="language-C">WM_SetCallback(hWin, _cbButtonback);
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ol start="3">
-<li>重写按键的回调函数</li>
+<pre><code>always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin
+ clk_cnt &lt;= 16&#39;d0;
+ tx_cnt  &lt;= 4&#39;d0;
+ end
+ else begin
+   if(tx_flag) begin //发送信号到来时，开始计数
+       if(clk_cnt &lt;= BSP_CNT - 1)begin
+          clk_cnt &lt;= clk_cnt + 1&#39;d1;
+          tx_cnt  &lt;= tx_cnt;
+       end
+       else begin   //当计数到达BSP_CNT时，即接收完一个bit
+          clk_cnt &lt;= 16&#39;d0;
+         tx_cnt  &lt;= tx_cnt + 1&#39;d1;
+        end
+   end
+   else begin 
+      clk_cnt &lt;= 16&#39;d0;
+      tx_cnt  &lt;= 4&#39;d0;
+    end
+end
+end</code></pre><ol start="4">
+<li>将缓存下的并行数据转化为串行数据发送出去</li>
 </ol>
-<pre class="line-numbers language-C"><code class="language-C">/* 重写按键的回调函数 */
+<pre><code>always @(posedge clk or negedge rst_n)begin
+if(!rst_n)begin
+uart_tx_data &lt;= 1&#39;d1;
+end
+else if(tx_flag)begin
+  case(tx_cnt)
+     4&#39;d0: uart_tx_data &lt;= 1&#39;b0;         //起始位 
+     4&#39;d1: uart_tx_data &lt;= tx_data[0];
+     4&#39;d2: uart_tx_data &lt;= tx_data[1];
+      4&#39;d3: uart_tx_data &lt;= tx_data[2];
+      4&#39;d4: uart_tx_data &lt;= tx_data[3];
+      4&#39;d5: uart_tx_data &lt;= tx_data[4];
+      4&#39;d6: uart_tx_data &lt;= tx_data[5];
+      4&#39;d7: uart_tx_data &lt;= tx_data[6];
+      4&#39;d8: uart_tx_data &lt;= tx_data[7];
+     4&#39;d9: uart_tx_data &lt;= 1&#39;b1;
+     default: ;
+   endcase 
+end
+else 
+/*这将uart_tx_data置是为数据发送完毕后能再次进入串口接收*/ 
+uart_tx_data &lt;= 1&#39;b1;  
+end</code></pre></li>
+</ol>
+<h3 id="顶层模块"><a href="#顶层模块" class="headerlink" title="顶层模块"></a>顶层模块</h3><p>  顶层模块主要是对uart接收模块和uart发送模块例化</p>
+<pre><code>module uart_top(
 
-static void _cbButtonback(WM_MESSAGE* pMsg)
-{
-    WM_HWIN hWin;
-    hWin = pMsg->hWin;
+  input clk,
+  input rst_n,
 
-    switch (pMsg->MsgId)
-    {
-        /*按键控件重绘*/
-    case WM_PAINT:
-         /*按键按下时, 绘制按键的外观*/
-        if (BUTTON_IsPressed(hWin)) 
-        {
-            GUI_SetColor(GUI_DARKGRAY);
-            /*绘制抗锯齿填充的圆*/
-            GUI_AA_FillCircle(100 * MAG, 0, 72 * MAG);
-            GUI_SetBkColor(GUI_DARKGRAY);
-            GUI_SetColor(GUI_WHITE);
-            GUI_DrawBitmap(&bmReturn, 40, 5);
-        }
-        else
-        {
-              /*按键未按下时, 绘制按键的外观*/
-            GUI_SetColor(GUI_STCOLOR_LIGHTBLUE);
-            GUI_AA_FillCircle(100 * MAG, 0, 72 * MAG);
-            GUI_SetBkColor(GUI_STCOLOR_LIGHTBLUE);
-            GUI_SetColor(GUI_WHITE);
-            GUI_DrawBitmap(&bmReturn, 40, 5);
-        }
-        break;
-    default:
-        BUTTON_Callback(pMsg);/* 按键默认的事件处理函数 */
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  input  uart_rx,
 
+  output uart_tx
+
+);
+
+parameter CLK_FREQ = 50000000;
+parameter UART_BPS = 115200;
+
+
+wire         uart_en_w;
+wire [7 : 0] uart_data_w;
+wire         clk_1m_w;
+
+ip_pll    ip_pll_inst (
+    .inclk0 ( clk ),
+    .c0 ( clk_1m_w )
+    );
+
+
+
+uart_rx #(                          //串口接收模块
+    .CLK_FREQ       (CLK_FREQ),       //设置系统时钟频率
+    .UART_BPS       (UART_BPS))       //设置串口接收波特率
+u_uart_x(                 
+    .clk        (clk), 
+    .rst_n      (rst_n),
+
+    .uart_rx_data       (uart_rx),
+    .uart_rx_done       (uart_en_w),
+    .uart_data          (uart_data_w)
+    );
+uart_tx  #(
+    .CLK_FREQ  (CLK_FREQ),
+    .UART_BPS  (UART_BPS))
+ u_uart_tx(
+    .clk          (clk),
+    .rst_n        (rst_n),
+
+    .uart_tx_flag (uart_en_w),
+    .uart_data    (uart_data_w),
+    .uart_tx_data (uart_tx)
+);
+
+
+endmodule
+</code></pre>
             </div>
             <hr/>
 
@@ -578,7 +779,7 @@ static void _cbButtonback(WM_MESSAGE* pMsg)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wlyumu.cn/posts/0000000b/">http://wlyumu.cn/posts/0000000b/</a>
+                    <a href="http://wlyumu.cn/posts/64/">http://wlyumu.cn/posts/64/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -616,8 +817,8 @@ static void _cbButtonback(WM_MESSAGE* pMsg)
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Emwin/">
-                                    <span class="chip bg-color">Emwin</span>
+                                <a href="/tags/FPGA/">
+                                    <span class="chip bg-color">FPGA</span>
                                 </a>
                             
                         </div>
@@ -805,9 +1006,10 @@ static void _cbButtonback(WM_MESSAGE* pMsg)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/64/">
                     <div class="card-image">
@@ -825,9 +1027,9 @@ static void _cbButtonback(WM_MESSAGE* pMsg)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>20120-06-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>20120-06-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -840,6 +1042,7 @@ static void _cbButtonback(WM_MESSAGE* pMsg)
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -858,24 +1061,24 @@ static void _cbButtonback(WM_MESSAGE* pMsg)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/00000009/">
+                <a href="/posts/0000000b/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【Emwin】xbf字体制作及使用方法">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【Emwin】自定义按键">
                         
-                        <span class="card-title">【Emwin】xbf字体制作及使用方法</span>
+                        <span class="card-title">【Emwin】自定义按键</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            xbf字体制作和使用方法
+                            自定义按键
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>20120-02-20
+                                <i class="far fa-clock fa-fw icon-date"></i>20120-02-27
                             </span>
                         <span class="publish-author">
                             
